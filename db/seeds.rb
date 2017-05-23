@@ -9,3 +9,14 @@
 
 
 # puts Date.today.end_of_month
+# <li class="day">
+#     <div class="date">2</div>
+#     <div class="event">
+#         <div class="event-desc">
+#             Career development @ Community College room #402
+#         </div>
+#         <div class="event-time">
+#             2:00pm to 5:00pm
+#         </div>
+#     </div>
+# </li>

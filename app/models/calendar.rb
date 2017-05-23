@@ -12,4 +12,7 @@ class Calendar < ApplicationRecord
     end
   end
 
+  def add_month(time)
+    self.months.create(order: time.month, name: time.strftime("%B"), days: time.end_of_month.day, year: time.strftime("%Y"))
+  end
 end
