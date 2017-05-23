@@ -21,7 +21,6 @@ class Month < ApplicationRecord
     week_days
   end
 
-
   def last_week_days
     week_days = []
     day_of_week = DateTime.new(year, order).end_of_month.wday
