@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522232130) do
+ActiveRecord::Schema.define(version: 20170523015533) do
 
   create_table "calendars", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170522232130) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "year"
+    t.integer  "order"
     t.index ["calendar_id"], name: "index_months_on_calendar_id"
   end
 
