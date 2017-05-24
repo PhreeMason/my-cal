@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524041048) do
+ActiveRecord::Schema.define(version: 20170524181648) do
 
   create_table "calendars", force: :cascade do |t|
     t.integer  "user_id"
@@ -38,11 +38,11 @@ ActiveRecord::Schema.define(version: 20170524041048) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "content"
-    t.datetime "start_time"
+    t.time     "start_time"
     t.integer  "month_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "endtime"
+    t.date     "day"
     t.index ["month_id"], name: "index_tasks_on_month_id"
   end
 
