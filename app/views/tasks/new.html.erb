@@ -1,15 +1,13 @@
 <%= form_for(@task) do |f| %>
-<%= f.label :content %></br>
-<%= f.text_area :content %></br>
-<%= f.label :start_time %>
-<%= select_time Time.now %></br>
-<%= f.fields_for :months do |month| %>
-  <%= month.label :year %>
+  <%= f.label :content %></br>
+  <%= f.text_area :content %></br>
+  <%= f.label :start_time %>
+  <%= select_time Time.now %></br>
+  <%= f.label :year %>
   <%= select_year Time.now %></br>
-  <%= month.label :month %>
+  <%= f.label :month %>
   <%= select_month Time.now %></br>
-<% end %>
-<%= f.label :day %>
-<%= select_day Time.now %></br>
-<%= f.submit %></br>
+  <%= f.label :day %>
+  <%= select_day Time.now %></br>
+  <%= f.submit %></br>
 <%end%>

@@ -11,5 +11,14 @@ class TasksController < ApplicationController
 
   def create
     binding.pry
+    @task = Task.new(task_params)
+    binding.pry
   end
+
+  private
+
+    def task_params
+      params.require(:task).permit(:content)
+      params.require(:date).permit([:year, :month, :day, :hour, :minute])
+    end
 end
