@@ -1,9 +1,15 @@
 <%= form_for(@task) do |f| %>
 <%= f.label :content %></br>
-<%= f.text_field :content %></br>
-<%= f.label :start_time %></br>
-<%= select_date Date.now, prefix: :date %></br>
-<%= select_date Time.now, prefix: :time %></br>
-<%= f.label :endtime %></br>
+<%= f.text_area :content %></br>
+<%= f.label :start_time %>
+<%= select_time Time.now %></br>
+<%= f.fields_for :months do |month| %>
+  <%= month.label :year %>
+  <%= select_year Time.now %></br>
+  <%= month.label :month %>
+  <%= select_month Time.now %></br>
+<% end %>
+<%= f.label :day %>
+<%= select_day Time.now %></br>
 <%= f.submit %></br>
 <%end%>
