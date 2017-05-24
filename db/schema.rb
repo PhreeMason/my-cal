@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523015533) do
+ActiveRecord::Schema.define(version: 20170524041048) do
 
   create_table "calendars", force: :cascade do |t|
     t.integer  "user_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170523015533) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "location"
+    t.string   "content"
     t.datetime "start_time"
     t.integer  "month_id"
     t.datetime "created_at", null: false
