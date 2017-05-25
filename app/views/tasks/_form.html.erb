@@ -3,12 +3,12 @@
   <%= f.label :content %></br>
   <%= f.text_area :content %></br>
   <%= f.label :start_time %>
-  <%= select_time Time.now,ampm: true %></br>
+  <%= select_time Time.now, ampm: true %></br>
   <%= f.label :year %>
   <%= select_year month.to_time %></br>
   <%= f.label :month %>
   <%= select_month month.to_time %></br>
   <%= f.label :day %>
-  <%= select_day task.day %></br>
+  <%= select_day task.start_time %></br>
   <%= f.submit %></br>
 <%end%>

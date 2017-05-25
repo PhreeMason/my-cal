@@ -1,28 +1,29 @@
 class TasksController < ApplicationController
+
   def new
     if !Month.exists?(params[:month_id])
-      redirect_to months_path, alert: "Month not found."
+      redirect_to '/', alert: "Month not found."
     else
       @month = Month.find_by(id: params[:month_id])
       if params[:day]
-        @task = Task.new(month_id: params[:month_id], day: @month.to_time(params[:day]))
+        @task = Task.new(month_id: params[:month_id], start_time: @month.to_time(params[:day]))
+      else
+        @task = Task.new(month_id: params[:month_id], start_time: @month.to_time(1))
       end
-        @task = Task.new(month_id: params[:month_id], day: @month.to_time(1))
     end
   end
 
   def edit
     @month = Month.find_by(id: params[:month_id])
     if @month.nil?
-      redirect_to months_path, alert: "Month not found."
+      redirect_to '/', alert: "Month not found."
     else
       @task = @month.tasks.find_by(id: params[:id])
-      redirect_to months_path(month), alert: "Task not found." if @task.nil?
+      redirect_to '/', alert: "Task not found." if @task.nil?
     end
   end
 
   def create
-    binding.pry
     @task = Task.new(task_params)
     my_cal.months << @task.month unless my_cal.months.include?(@task.month)
     my_cal.save
