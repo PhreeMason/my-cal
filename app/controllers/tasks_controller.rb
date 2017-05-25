@@ -14,11 +14,11 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     binding.pry
   end
-
+  
   private
-
     def task_params
-      params.require(:task).permit(:content)
-      params.require(:date).permit([:year, :month, :day, :hour, :minute])
+      a = params.require(:task).permit(:content).to_hash
+      b = {date: params.require(:date).permit([:year, :month, :day, :hour, :minute]).to_hash}
+      return a.merge(b)
     end
 end

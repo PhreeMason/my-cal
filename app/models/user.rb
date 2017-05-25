@@ -10,8 +10,9 @@ class User < ApplicationRecord
   after_create :give_me_calendar
 
   def give_me_calendar
-    self.build_calendar
+    self.create_calendar
   end
+
   def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        user.provider = auth.provider

@@ -8,11 +8,12 @@ class Calendar < ApplicationRecord
     (0..12).each do |n|
       now = Date.today
       now += n.month
-      self.months.create(order: now.month, name: now.strftime("%B"), days: now.end_of_month.day, year: now.strftime("%Y"))
+      self.months << Month.create_from_time(now)
     end
   end
 
   def add_month(time)
-    self.months.create(order: time.month, name: time.strftime("%B"), days: time.end_of_month.day, year: time.strftime("%Y"))
+    self.months << Month.create_from_time(time)
   end
+
 end
