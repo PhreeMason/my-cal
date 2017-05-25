@@ -1,7 +1,16 @@
 class Task < ApplicationRecord
   has_one :mytask
-  belongs_to :month
+  belongs_to :month, optional: false
   accepts_nested_attributes_for :month
+  validates :content, presence: true
+  validates :start_time, presence: true
+  validate :time_cannot_be_in_the_past
+
+  def time_cannot_be_in_the_past
+    if !start_time.blank? and start_time < Time.now
+      errors.add(:start_time, "can't be in the past")
+    end
+  end
 
   def date=(date)
     t = date.values.map(&:to_i)

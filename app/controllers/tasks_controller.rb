@@ -25,7 +25,8 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    my_cal.months << @task.month unless my_cal.months.include?(@task.month)
+    @month = @task.month
+    my_cal.months << @month unless my_cal.months.include?(@month)
     my_cal.save
     if @task.save
       current_user.tasks << @task
