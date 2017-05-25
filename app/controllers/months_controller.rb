@@ -8,4 +8,7 @@ class MonthsController < ApplicationController
     redirect_to my_cal.find_month_by_time(Time.now)
   end
 
+  def jump
+
+  end
 end

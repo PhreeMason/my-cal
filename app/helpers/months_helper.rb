@@ -20,4 +20,12 @@ module MonthsHelper
     "#{month.name} #{month.year}"
   end
 
+  def month_jump
+      form_tag(jump_path) do
+        select_month Time.now
+        select_year Time.now
+      submit_tag("Jump to Month")
+    end
+  end
+
 end
