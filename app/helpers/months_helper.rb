@@ -1,21 +1,23 @@
 module MonthsHelper
-  def prev_month_days
-    now = DateTime.now - 1.month
-    month = my_cal.months.find_by(order: now.month, year: now.strftime("%Y"))
-    if month
-      month.last_week_days
-    else
-      my_cal.add_month(now).last_week_days
-    end
+
+  def my_cal
+    current_user.calendar
   end
 
-  def next_month_days
-    now = DateTime.now + 1.month
-    month = my_cal.months.find_by(order: now.month, year: now.strftime("%Y"))
-    if month
-      month.first_week_days
-    else
-      my_cal.add_month(now).first_week_days
-    end
+  def prev_month_days(month)
+    now = DateTime.new(month.year, month.order) - 1.month
+    month = my_cal.find_month_by_time(now)
+    month.last_week_days
   end
+
+  def next_month_days(month)
+    now = DateTime.new(month.year, month.order) + 1.month
+    month = my_cal.find_month_by_time(now)
+    month.first_week_days
+  end
+
+  def month_header(month)
+    "#{month.name} #{month.year}"
+  end
+
 end

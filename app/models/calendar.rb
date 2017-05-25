@@ -19,4 +19,13 @@ class Calendar < ApplicationRecord
     self.months.last
   end
 
+  def find_month_by_time(time)
+    month = self.months.find_by(order: time.month, year: time.strftime("%Y"))
+    if month
+      month
+    else
+      self.add_month(time)
+    end
+  end
+
 end

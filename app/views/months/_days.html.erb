@@ -1,0 +1,42 @@
+<!-- Days from previous month -->
+
+    <ul class="days">
+      <% prev_month_days(month).each do |day| %>  
+        <li class="day other-month">
+          <div class="date"><%= day %></div>
+        </li>
+      <% end %>
+    <!-- Days in current month -->
+      <% month.first_week_days.each do |day| %>  
+        <li class="day">
+          <div class="date"><%= day %></div>
+        </li>
+      <% end %>
+    </ul>
+    
+    <% month.middle_week_days.each do |week_days| %>  
+      <ul class="days">
+        <% week_days.each do |day| %>  
+          <li class="day">
+            <div class="date"><%= day %></div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    
+    
+    <ul class="days">
+      <% month.last_week_days.each do |day| %>  
+        <li class="days">
+          <div class="date"><%= day %></div>
+        </li>
+      <% end %>
+
+    <!-- Next Month -->
+    
+      <% next_month_days(month).each do |day| %>
+        <li class="day other-month">
+          <div class="date"><%= day %></div>
+        </li>
+      <% end %>
+    </ul>
