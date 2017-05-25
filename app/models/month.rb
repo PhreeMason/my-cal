@@ -44,8 +44,8 @@ class Month < ApplicationRecord
     self.create(order: time.month, name: time.strftime("%B"), days: time.end_of_month.day, year: time.strftime("%Y"))
   end
 
-  def to_time
-    Time.new(year, order)
+  def to_time(day=1)
+    Time.new(year, order, day)
   end
 
 end

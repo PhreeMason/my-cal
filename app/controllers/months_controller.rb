@@ -1,5 +1,4 @@
 class MonthsController < ApplicationController
-  include MonthsHelper
 
   def show
     @month = Month.find_by(id: params[:id])
