@@ -19,4 +19,8 @@ class Task < ApplicationRecord
     self.month = Month.find_or_create_by_time(time)
   end
 
+  def self.for_today(month, day)
+    joins(:month).where(["name = ? and year = ?", month.name, month.year]).where('start_time > ? and start_time < ?', month.to_time(day), month.to_time(day + 1)).order("start_time")
+  end
+
 end
