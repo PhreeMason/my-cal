@@ -14,6 +14,7 @@ class Calendar < ApplicationRecord
 
   def add_month(time)
     self.months << Month.create_from_time(time)
+    self.save
   end
 
 end

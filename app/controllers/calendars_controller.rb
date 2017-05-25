@@ -1,6 +1,6 @@
 class CalendarsController < ApplicationController
   def show
-    @calendar = current_user.calendar
+    @calendar = my_cal
   end
 
 end

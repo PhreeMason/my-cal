@@ -1,6 +1,8 @@
 class Month < ApplicationRecord
   belongs_to :calendar
   has_many :tasks
+  validates :name, uniqueness: { scope: :year,
+    message: "should happen once per year" }
 
   def first_week_days
     week_days = []
