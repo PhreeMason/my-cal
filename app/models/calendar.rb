@@ -10,11 +10,13 @@ class Calendar < ApplicationRecord
       now += n.month
       self.months << Month.create_from_time(now)
     end
+    self.save
   end
 
   def add_month(time)
     self.months << Month.create_from_time(time)
     self.save
+    self.months.last
   end
 
 end

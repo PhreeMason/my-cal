@@ -2,7 +2,7 @@
   <%= f.label :content %></br>
   <%= f.text_area :content %></br>
   <%= f.label :start_time %>
-  <%= select_time Time.now %></br>
+  <%= select_time Time.now,ampm: true %></br>
   <%= f.label :year %>
   <%= select_year Time.now %></br>
   <%= f.label :month %>

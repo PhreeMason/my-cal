@@ -9,7 +9,6 @@ class Task < ApplicationRecord
     self.day = time
     self.start_time = time
     self.month = Month.find_or_create_by_time(time)
-    binding.pry
   end
 
 end
