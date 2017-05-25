@@ -6,6 +6,6 @@ class MonthsController < ApplicationController
   end
 
   def home
-    redirect_to my_cal.months.find_month_by_time(Time.now)
+    redirect_to my_cal.find_month_by_time(Time.now)
   end
 end

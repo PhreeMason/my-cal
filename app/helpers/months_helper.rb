@@ -4,16 +4,16 @@ module MonthsHelper
     current_user.calendar
   end
 
-  def prev_month_days(month)
+  def prev_month(month)
     now = DateTime.new(month.year, month.order) - 1.month
     month = my_cal.find_month_by_time(now)
-    month.last_week_days
+    month
   end
 
-  def next_month_days(month)
+  def next_month(month)
     now = DateTime.new(month.year, month.order) + 1.month
     month = my_cal.find_month_by_time(now)
-    month.first_week_days
+    month
   end
 
   def month_header(month)

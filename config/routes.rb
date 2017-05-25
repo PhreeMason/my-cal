@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :months
-  resources :tasks
+  resources :months, only: [:show, :home] do
+    resources :tasks
+  end
   get 'calendars/show'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }

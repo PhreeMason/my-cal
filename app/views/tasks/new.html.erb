@@ -1,12 +1,13 @@
-<%= form_for(@task) do |f| %>
+<%= form_for(@task, url: month_tasks_url(@month)) do |f| %>
+  <%= f.hidden_field :month_id %>
   <%= f.label :content %></br>
   <%= f.text_area :content %></br>
   <%= f.label :start_time %>
   <%= select_time Time.now,ampm: true %></br>
   <%= f.label :year %>
-  <%= select_year Time.now %></br>
+  <%= select_year @month.to_time %></br>
   <%= f.label :month %>
-  <%= select_month Time.now %></br>
+  <%= select_month @month.to_time %></br>
   <%= f.label :day %>
   <%= select_day Time.now %></br>
   <%= f.submit %></br>
