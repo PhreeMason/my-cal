@@ -4,7 +4,13 @@
     <ul>
       <% if logged_in? %>
         <li style="float:left"><%= link_to 'Last Month', prev_month(@month) %></li>
-        <li id='username'><%= link_to "Sign out #{current_user.username}", destroy_user_session_path, method: :delete %></li>
+        <li class='dropdown'>
+          <a href="javascript:void(0)" class="dropbtn"><%= current_user.username %></a>
+          <div class="dropdown-content">
+            <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+          </div>
+        </li>
+        <li style"float:right"><%= link_to 'Today', '/' %></li>
         <li style="float:right"><%= link_to 'Next Month', next_month(@month) %></li>
       <%else%>
         <li><%= link_to "Sign in", new_user_session_path %></li>
