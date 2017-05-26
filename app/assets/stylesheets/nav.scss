@@ -27,7 +27,7 @@
     background-color: #8e352e;
 }
 
-li a, .dropbtn {
+#mytopnav li a, .dropbtn {
     display: inline-block;
     color: white;
     text-align: center;
@@ -35,15 +35,15 @@ li a, .dropbtn {
     text-decoration: none;
 }
 
-li a:hover, .dropdown:hover .dropbtn {
+#mytopnav li a:hover, .dropdown:hover .dropbtn {
     background-color: #8e352e;
 }
 
-li.dropdown {
+#mytopnav li.dropdown {
     display: inline-block;
 }
 
-.dropdown-content {
+#mytopnav .dropdown-content {
     display: none;
     position: absolute;
     background-color: #2d0808;
@@ -52,16 +52,16 @@ li.dropdown {
     z-index: 1;
 }
 
-.dropdown-content a {
+#mytopnav .dropdown-content a {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
 }
 
-.dropdown-content a:hover {background-color: #2d0808}
+#mytopnav .dropdown-content a:hover {background-color: #2d0808}
 
-.dropdown:hover .dropdown-content {
+#mytopnav .dropdown:hover .dropdown-content {
     display: block;
 }
 

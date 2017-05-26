@@ -85,6 +85,7 @@ header {
 }
 
 #calendar .new-task {
+  display: block;
   background: #8e352e;
   color: #ffffff;
   border: none;
@@ -94,6 +95,9 @@ header {
   cursor: pointer;
   float: left;
 }
+
+
+
 
 #calendar .event {
     clear: both;

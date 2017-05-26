@@ -1,3 +1,39 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.task-page {
+  margin: auto;
+  width: 90%;
+}
+
+.task-show {
+  float: left;
+  height: 220px;
+  width: 220px;
+  background: #eee;
+  margin: 4px;
+  border-radius: 4%;
+  overflow: auto;
+  padding: 3px;
+}
+#task-content p:first-letter{
+  text-transform: uppercase;
+}
+
+.task-show a {
+  float: right;
+  font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+}
+
+.task-show p {
+  color: #424242;
+  font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+  letter-spacing:0.1em;
+  text-align:center;
+  margin: 40px auto;
+  text-transform: lowercase;
+  line-height: 145%;
+  font-size: 12pt;
+  font-variant: small-caps;
+}
