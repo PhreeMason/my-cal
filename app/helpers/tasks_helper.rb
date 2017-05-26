@@ -18,12 +18,19 @@ module TasksHelper
   def more_tasks(month, day)
     tasks =  task_filter(Task.for_today(month, day))
     if tasks.count > 1
-      link_to "#{tasks.count} more", month_task_path(month, tasks[0]), class: 'more-tasks'
+      link_to "#{tasks.count - 1} more", month_task_path(month, tasks[0]), class: 'more-tasks'
     end
   end
 
   def task_filter(tasks)
     tasks.select {|task| current_user.tasks.include?(task)}
+  end
+
+  def new_task_form(month, day)
+    form_tag(new_month_task_path(prev_month(month)), {:method => 'get'}) do
+      hidden_field_tag('day', day)
+      submit_tag("New", class: 'new-task')
+    end
   end
 
 end

@@ -1,69 +1,33 @@
-<!-- Days from previous month -->
 
-    <ul class="days">
-      <% prev_month(month).last_week_days.each do |day| %>
-        <li class="day other-month">
-          <div class="date"><%= day %></div>
-          <div class="">  <%= form_tag(new_month_task_path(prev_month(month)), {:method => 'get'}) do %>
-            <%= hidden_field_tag('day', day)%>
-            <%= submit_tag("New") %>
-            <% end %></div>
-            <%= task_for_day(month, day) %>
-        </li>
-      <% end %>
-    <!-- Days in current month -->
-      <% month.first_week_days.each do |day| %>
-        <li class="day">
-          <div class="date"><%= day %></div>
-          <div class="">  <%= form_tag(new_month_task_path(month), {:method => 'get'}) do %>
-            <%= hidden_field_tag('day', day)%>
-            <%= submit_tag("New") %>
-            <% end %></div>
-            <%= task_for_day(month, day) %>
-            <%= more_tasks(month, day) %>
-        </li>
-      <% end %>
-    </ul>
+<% month.first_week_days.each do |day| %>
+    <li class="day">
+      <div class="date"><%= day %></div>
+      <%= new_task_form(month, day) %>
+      <%= task_for_day(month, day) %>
+      <%= more_tasks(month, day) %>
+    </li>
+<% end %>
 
-    <% month.middle_week_days.each do |week_days| %>
-      <ul class="days">
-        <% week_days.each do |day| %>
-          <li class="day">
-            <div class="date"><%= day %></div>
-            <div >  <%= form_tag(new_month_task_path(month), {:method => 'get'}) do %>
-              <%= hidden_field_tag('day', day)%>
-              <%= submit_tag 'New', class: 'new-task'%>
-              <% end %></div>
-              <%= task_for_day(month, day) %>
-              <%= more_tasks(month, day) %>
-          </li>
-        <% end %>
-      </ul>
+
+<% month.middle_week_days.each do |week_days| %>
+
+    <% week_days.each do |day| %>
+      <li class="day">
+        <div class="date"><%= day %></div>
+        <%= new_task_form(month, day) %>
+        <%= task_for_day(month, day) %>
+        <%= more_tasks(month, day) %>
+      </li>
     <% end %>
 
+<% end %>
 
-    <ul class="days">
-      <% month.last_week_days.each do |day| %>
-        <li class="days">
-          <div class="date"><%= day %></div>
-          <div class="">  <%= form_tag(new_month_task_path(month), {:method => 'get'}) do %>
-            <%= hidden_field_tag('day', day)%>
-            <%= submit_tag("New") %>
-            <% end %></div>
-            <%= task_for_day(month, day) %>
-        </li>
-      <% end %>
 
-    <!-- Next Month -->
-
-      <% next_month(month).first_week_days.each do |day| %>
-        <li class="day other-month">
-          <div class="date"><%= day %></div>
-          <div class="">  <%= form_tag(new_month_task_path(prev_month(month)), {:method => 'get'}) do %>
-            <%= hidden_field_tag('day', day)%>
-            <%= submit_tag("New") %>
-            <% end %></div>
-            <%= task_for_day(month, day) %>
-        </li>
-      <% end %>
-    </ul>
+<% month.last_week_days.each do |day| %>
+ <li class="days">
+   <div class="date"><%= day %></div>
+   <%= new_task_form(month, day) %>
+   <%= task_for_day(month, day) %>
+   <%= more_tasks(month, day) %>
+ </li>
+<% end %>
