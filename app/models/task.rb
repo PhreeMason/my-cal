@@ -20,7 +20,7 @@ class Task < ApplicationRecord
   end
 
   def self.for_today(month, day)
-    joins(:month).where(["name = ? and year = ?", month.name, month.year]).where('start_time > ? and start_time < ?', month.to_time(day), month.to_time(day + 1)).order("start_time")
+    joins(:month).where(["name = ? and year = ?", month.name, month.year]).where('start_time > ? and start_time < ?', month.to_time(day), (month.to_time(day) + 1.day)).order("start_time")
   end
 
 end

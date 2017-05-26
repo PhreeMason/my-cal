@@ -1,13 +1,31 @@
 <%= form_for(task, url: month_tasks_path(month)) do |f| %>
+  <%= task_form_display(task) %>
+  <%= content_tag :div, class: 'field' do %>
   <%= f.label :content %></br>
   <%= f.text_area :content %></br>
+  <% end %>
+
+  <%= content_tag :div, class: 'field' do %>
   <%= f.label :start_time %>
   <%= select_time Time.now, ampm: true %></br>
+  <% end %>
+
+  <%= content_tag :div, class: 'field' do %>
   <%= f.label :year %>
   <%= select_year month.to_time %></br>
+  <% end %>
+
+  <%= content_tag :div, class: 'field' do %>
   <%= f.label :month %>
   <%= select_month month.to_time %></br>
+  <% end %>
+
+  <%= content_tag :div, class: 'field' do %>
   <%= f.label :day %>
   <%= select_day task.start_time %></br>
+  <% end %>
+
+  <%= content_tag :div, class: 'actions' do %>
   <%= f.submit %></br>
+  <% end %>
 <%end%>

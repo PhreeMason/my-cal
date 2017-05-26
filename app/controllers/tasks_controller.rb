@@ -36,6 +36,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def show
+    if !Month.exists?(params[:month_id])
+      redirect_to '/', alert: "Month not found."
+    else
+      @month = Month.find_by(id: params[:month_id])
+      @task =  @month.tasks.find_by(id: params[:id])
+      redirect_to '/', alert: "Task not found." if @task.nil?
+    end
+  end
+
   private
     def task_params
       a = params.require(:task).permit(:content).to_hash

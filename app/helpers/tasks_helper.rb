@@ -1,4 +1,5 @@
 module TasksHelper
+
   def task_display(tasks)
     task = tasks[0]
     content_tag :div, class: 'event' do
@@ -8,8 +9,21 @@ module TasksHelper
   end
 
   def task_for_day(month, day)
-    tasks = month.tasks.select{|task| task.start_time.day == day}
+    tasks = Task.for_today(month, day)
     task_display(tasks) unless tasks.empty?
+  end
+
+  def task_form_display(task)
+     if task.errors.any?
+       content_tag :div, class: 'error_explanation' do
+         tag.h2 content_tag(:p, "#{pluralize(task.errors.count, 'error')} prohibited this task from being saved:")
+        tag.ul do
+          task.errors.full_messages.each do |message|
+           tag.li message
+          end
+        end
+       end
+     end
   end
 
 end
