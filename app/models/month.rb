@@ -1,8 +1,6 @@
 class Month < ApplicationRecord
   belongs_to :calendar
   has_many :tasks
-  validates :name, uniqueness: { scope: :year,
-    message: "should happen once per year" }
 
   def first_week_days
     week_days = []
@@ -29,15 +27,6 @@ class Month < ApplicationRecord
     n = days - day_of_week
     (n..days).each { |e| week_days << e }
     week_days
-  end
-
-  def self.find_or_create_by_time(time)
-    month = self.find_by(order: time.month, year: time.year)
-    if month
-      return month
-    else
-      return self.create_from_time(time)
-    end
   end
 
   def self.create_from_time(time)

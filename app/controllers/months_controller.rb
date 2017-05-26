@@ -1,7 +1,7 @@
 class MonthsController < ApplicationController
 
   def show
-    @month = Month.find_by(id: params[:id])
+    @month = my_cal.month.find_by(id: params[:id])
   end
 
   def home
