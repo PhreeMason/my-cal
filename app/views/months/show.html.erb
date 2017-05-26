@@ -1,7 +1,15 @@
 <div id="calendar-wrap">
             <header>
-                <h1><%= month_header(@month) %></h1>
+                <h1>
+                  <%= month_header(@month) %>
+                </h1>
             </header>
+            <div class="month-nav" id= 'prev-month'>
+              <%= link_to 'Last Month', prev_month(@month), %>
+            </div>
+            <div class="month-nav" id= 'next-month'>
+              <%= link_to 'Next Month', next_month(@month) %>
+            </div>
             <div id="calendar">
                 <ul class="weekdays">
                     <li>Sunday</li>

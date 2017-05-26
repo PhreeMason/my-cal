@@ -6,9 +6,18 @@ body {
     font-family: Tahoma;
 }
 
-header {
+header h1 {
     text-align: center;
 }
+
+#prev-month {
+  text-align: left;
+}
+
+#next-month {
+  text-align: right;
+}
+
 
 #calendar {
   margin: auto;

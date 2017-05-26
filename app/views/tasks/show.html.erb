@@ -1,4 +1,4 @@
-<h1><%= "#{@month.name} #{@month.year} #{@task.start_time.day}" %></h1>
+<h1><%= "#{@month.name} #{@month.year} #{@task.start_time.day}" %> <%= link_to 'Next Month', next_month(@month) %> </h1>
 
 <% task_filter(Task.for_today(@month, @task.start_time.day)).each do |task| %>
   <ul>
