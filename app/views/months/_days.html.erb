@@ -29,9 +29,9 @@
         <% week_days.each do |day| %>
           <li class="day">
             <div class="date"><%= day %></div>
-            <div class="">  <%= form_tag(new_month_task_path(month), {:method => 'get'}) do %>
+            <div >  <%= form_tag(new_month_task_path(month), {:method => 'get'}) do %>
               <%= hidden_field_tag('day', day)%>
-              <%= submit_tag("New") %>
+              <%= submit_tag 'New', class: 'new-task'%>
               <% end %></div>
               <%= task_for_day(month, day) %>
           </li>
