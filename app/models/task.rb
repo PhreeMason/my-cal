@@ -16,7 +16,7 @@ class Task < ApplicationRecord
     t = date.values.map(&:to_i)
     time = Time.new(t[0],t[1],t[2],t[3],t[4])
     self.start_time = time
-    self.month = Month.find_or_create_by_time(time)
+    self.month = Month.create_from_time(time)
   end
 
   def self.for_today(month, day)

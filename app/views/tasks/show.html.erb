@@ -1,6 +1,6 @@
 <h1><%= "#{@month.name} #{@month.year} #{@task.start_time.day}" %></h1>
 
-<% Task.for_today(@month, @task.start_time.day).each do |task| %>
+<% task_filter(Task.for_today(@month, @task.start_time.day)).each do |task| %>
   <ul>
     <li>
       <%= "#{task.content}" %>

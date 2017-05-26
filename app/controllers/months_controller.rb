@@ -1,7 +1,12 @@
 class MonthsController < ApplicationController
 
   def show
-    @month = my_cal.month.find_by(id: params[:id])
+    @month = Month.find_by(id: params[:id])
+    if my_cal.months.include?(@month)
+      @month
+    else
+      redirect_to '/', alert: "Month not found."
+    end
   end
 
   def home
