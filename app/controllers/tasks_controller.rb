@@ -46,6 +46,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    @task = Task.find(params[:id])
+    @month = Month.find_by(id: params[:month_id])
+    if @task.update(task_params)
+     redirect_to @month
+    else
+     render :edit
+    end
+  end
+
   private
     def task_params
       a = params.require(:task).permit(:content).to_hash

@@ -1,4 +1,6 @@
 <header>
-    <h1>Edit</h1>
+    <h1>Edit Task</h1>
 </header>
-<%= render partial: 'tasks/form', locals: {month: @month, task: @task} %>
+<%= form_for(@task, url: month_task_path(@month, @task)) do |f| %>
+  <%= render partial: 'tasks/form', locals: {month: @month, task: @task, f: f} %>
+<%end%>

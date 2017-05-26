@@ -1,1 +1,7 @@
-<%= render partial: 'tasks/form', locals: {month: @month, task: @task} %>
+<header>
+    <h1>Create Task</h1>
+</header>
+
+<%= form_for(@task, url: month_tasks_path(@month)) do |f| %>
+  <%= render partial: 'tasks/form', locals: {month: @month, task: @task, f: f} %>
+<%end%>

@@ -20,6 +20,7 @@
             <%= submit_tag("New") %>
             <% end %></div>
             <%= task_for_day(month, day) %>
+            <%= more_tasks(month, day) %>
         </li>
       <% end %>
     </ul>
@@ -34,6 +35,7 @@
               <%= submit_tag 'New', class: 'new-task'%>
               <% end %></div>
               <%= task_for_day(month, day) %>
+              <%= more_tasks(month, day) %>
           </li>
         <% end %>
       </ul>

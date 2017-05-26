@@ -1,7 +1,11 @@
 <h1><%= "#{@month.name} #{@month.year} #{@task.start_time.day}" %></h1>
-<ul>
-  <li>
-    <%= "#{@task.content}" %>
-    <%= "#{@task.start_time.strftime("%I:%M %p")}" %>
-  </li>
-</ul>
+
+<% Task.for_today(@month, @task.start_time.day).each do |task| %>
+  <ul>
+    <li>
+      <%= "#{task.content}" %>
+      <%= "#{task.start_time.strftime("%I:%M %p")}" %>
+      <%= link_to 'Edit', edit_month_task_url(@month, task)%>
+    </li>
+  </ul>
+<% end %>
