@@ -14,11 +14,11 @@
 <% end %>
 <%= content_tag :div, class: 'field' do %>
 <%= f.label :content %></br>
-<%= f.text_area :content %></br>
+<%= f.text_field :content %></br>
 <% end %>
 
-<%= content_tag :div, class: 'field' do %>
-<%= f.label :start_time %>
+<%= content_tag :div, class: 'field', id:'time' do %>
+<%= f.label :start_time %></br>
 <%= select_time Time.now, ampm: true %></br>
 <% end %>
 
