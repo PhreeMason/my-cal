@@ -6,7 +6,6 @@ class Task < ApplicationRecord
   validates :content, presence: true
   validates :start_time, presence: true
   validate :time_cannot_be_in_the_past
-  accepts_nested_attributes_for :month
 
   def time_cannot_be_in_the_past
     if !start_time.blank? and start_time < Time.now

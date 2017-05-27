@@ -1,0 +1,27 @@
+.session-links a:link, a:visited {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    margin: 1px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.session-links a:hover, a:active {
+    background-color: #8e352e;
+
+}
+
+div.session-links {
+  margin: auto;
+  width: 50%;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+
+}

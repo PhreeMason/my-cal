@@ -1,0 +1,8 @@
+<% prev_month(month).last_week_days.each do |day| %>
+  <li class="day other-month">
+    <div class="date"><%= day %></div>
+    <%= new_task_form(month, day) %>
+    <%= task_for_day(month, day) %>
+    <%= more_tasks(month, day) %>
+  </li>
+<% end %>
