@@ -18,8 +18,8 @@ class Task < ApplicationRecord
     self.start_time = time
   end
 
-  def self.for_today(month, day)
-    tasks = joins(:month).where(["name = ? and year = ?", month.name, month.year]).where('start_time >= ? and start_time < ?', month.to_time(day), (month.to_time(day) + 1.day)).order("start_time")
+  def self.upcoming_for_user(user)
+    tasks = joins(:calendar).where(["calendar_id = ?", user.calendar.id]).where('start_time >= ?', Time.now).order("start_time")
   end
 
 

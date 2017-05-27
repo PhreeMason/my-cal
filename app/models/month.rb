@@ -15,11 +15,10 @@ class Month < ApplicationRecord
     start = first_week_days.last + 1
     finish = last_week_days.first - 1
     all_days = (start..finish).map { |e| e }
-    until all_days.empty?
-      week_days << all_days.slice!(0..6)
-    end
+    all_days.each_slice(7) {|e| week_days << e }
     week_days
   end
+
 
   def last_week_days
     week_days = []

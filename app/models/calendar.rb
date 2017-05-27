@@ -29,10 +29,8 @@ class Calendar < ApplicationRecord
   end
 
   def upcoming_tasks
-    tasks = self.months.map do |month|
-      month.tasks.select{ |task| task.start_time > Time.now }
-    end
-    tasks = tasks.delete_if { |elem| elem.flatten.empty? }
+    tasks = Task.upcoming_for_user(user)
+    tasks.chunk_while {|i, j| i.month == j.month }
   end
 
 end
