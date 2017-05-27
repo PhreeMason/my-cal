@@ -73,7 +73,6 @@ class TasksController < ApplicationController
   def upcoming
     @tasks = my_cal.upcoming_tasks
     @month = my_cal.find_month_by_time(Time.now)
-    binding.pry
     render :index
   end
 
