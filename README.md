@@ -4,6 +4,7 @@ This is a web app designed to help you keep track of your daily and upcoming tas
 
 
 ## Installation
+
 1. Clone or download My Cal.
 2. Navigate to My Cal's folder in your Terminal
 3. Run `bundle install`
@@ -15,6 +16,9 @@ This is a web app designed to help you keep track of your daily and upcoming tas
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/PhreeMason/my-cal. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
+## Credits
+
+Layout for calendar taken from https://responsivedesign.is/patterns/calendar/
 
 ## License
 
