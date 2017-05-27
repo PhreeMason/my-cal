@@ -1,24 +1,11 @@
-# README
+# My Cal
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a web app designed to help you keep track of your daily and upcoming tasks. This app also doubles as a Calendar.
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Installation
+1. Clone or download My Cal.
+2. Navigate to My Cal's folder in your Terminal
+3. Run `bundle install`
+4. Run `rails s`
+5. Open the url in your internet browser.

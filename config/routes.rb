@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :tasks, except: [:new]
   end
   get '/months/:month_id/tasks/new/:day' => 'tasks#new', as: :new_month_task
+  get '/upcoming' => 'tasks#upcoming', as: :upcoming
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "months#home"

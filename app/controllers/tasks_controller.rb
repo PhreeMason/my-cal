@@ -66,8 +66,15 @@ class TasksController < ApplicationController
 
   def index
     @month = my_cal.months.find_by(id: params[:month_id])
-    @months = my_cal.months.select { |e| !e.tasks.empty?  }
-    @tasks = @months.map(&:tasks)
+    months = my_cal.months.select { |e| !e.tasks.empty?  }
+    @tasks = months.map(&:tasks)
+  end
+
+  def upcoming
+    @tasks = my_cal.upcoming_tasks
+    @month = my_cal.find_month_by_time(Time.now)
+    binding.pry
+    render :index
   end
 
   private
