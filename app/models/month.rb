@@ -36,4 +36,8 @@ class Month < ApplicationRecord
     Time.new(year, order, day)
   end
 
+  def tasks_today(day)
+    array = tasks.select { |e| e.start_time.day == day }
+  end
+
 end

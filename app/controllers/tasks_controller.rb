@@ -37,7 +37,8 @@ class TasksController < ApplicationController
     else
       @month = my_cal.months.find_by(id: params[:month_id])
       @task =  @month.tasks.find_by(id: params[:id])
-      @tasks = @month.tasks
+      @tasks = @month.tasks_today(@task.start_time.day)
+      binding.pry
       redirect_to '/', alert: "Task not found." if @task.nil?
     end
   end
