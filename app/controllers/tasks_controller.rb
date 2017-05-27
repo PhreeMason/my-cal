@@ -4,13 +4,13 @@ class TasksController < ApplicationController
     if !Month.exists?(params[:month_id])
       redirect_to '/', alert: "Month not found."
     else
-      @month = Month.find_by(id: params[:month_id])
+      @month = my_cal.months.find_by(id: params[:month_id])
       @task = Task.new(month_id: params[:month_id], start_time: @month.to_time(params[:day]))
     end
   end
 
   def edit
-    @month = Month.find_by(id: params[:month_id])
+    @month = my_cal.months.find_by(id: params[:month_id])
     if @month.nil?
       redirect_to '/', alert: "Month not found."
     else
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
       @month = @task.month
       redirect_to @month
     else
-      @month =  Month.find_by(id: params[:month_id])
+      @month =  my_cal.months.find_by(id: params[:month_id])
       render :new
     end
   end
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
     if !Month.exists?(params[:month_id])
       redirect_to '/', alert: "Month not found."
     else
-      @month = Month.find_by(id: params[:month_id])
+      @month = my_cal.months.find_by(id: params[:month_id])
       @task =  @month.tasks.find_by(id: params[:id])
       redirect_to '/', alert: "Task not found." if @task.nil?
     end
@@ -47,7 +47,7 @@ class TasksController < ApplicationController
       @month = @task.month
       redirect_to @month
     else
-      @month =  Month.find_by(id: params[:month_id])
+      @month =  my_cal.months.find_by(id: params[:month_id])
       render :edit
     end
   end
