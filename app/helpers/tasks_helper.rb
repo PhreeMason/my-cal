@@ -27,10 +27,7 @@ module TasksHelper
   end
 
   def new_task_form(month, day)
-    form_tag(new_month_task_path(prev_month(month)), {:method => 'get'}) do
-      hidden_field_tag('day', day)
-      submit_tag("New", class: 'new-task')
-    end
+    link_to 'New', new_month_task_path(prev_month(month), day), class: 'new-task'
   end
 
 end
