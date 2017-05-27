@@ -11,18 +11,19 @@ module TasksHelper
   end
 
   def task_for_day(month, day)
-    tasks =  task_filter(Task.for_today(month, day))
+    tasks =  task_filter(month, day)
     task_display(tasks) unless tasks.empty?
   end
 
   def more_tasks(month, day)
-    tasks =  task_filter(Task.for_today(month, day))
+    tasks =  task_filter(month, day)
     if tasks.count > 1
       link_to "#{tasks.count - 1} more", month_task_path(month, tasks[0]), class: 'more-tasks'
     end
   end
 
-  def task_filter(tasks)
+  def task_filter(month, day)
+    tasks = month.tasks.select{|e| e.start_time.day == day }
     tasks.select {|task| current_user.tasks.include?(task)}
   end
 
