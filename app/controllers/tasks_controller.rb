@@ -24,12 +24,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    @month = @task.month
-    my_cal.months << @month unless my_cal.months.include?(@month)
-    my_cal.save
+    binding.pry
+    @task =  my_cal.tasks.build((task_params))
+    binding.pry
+    @month = my_cal.find_month_by_time(@task.start_time)
+    binding.pry
     if @task.save
-      current_user.tasks << @task
+      my_cal.save
       redirect_to @task.month
     else
       render :new
@@ -40,6 +41,7 @@ class TasksController < ApplicationController
     if !Month.exists?(params[:month_id])
       redirect_to '/', alert: "Month not found."
     else
+      binding.pry
       @month = Month.find_by(id: params[:month_id])
       @task =  @month.tasks.find_by(id: params[:id])
       redirect_to '/', alert: "Task not found." if @task.nil?

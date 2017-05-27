@@ -1,10 +1,12 @@
 class Task < ApplicationRecord
   has_one :mytask
+  has_one :user, through: :mytask
   belongs_to :month, optional: false
   accepts_nested_attributes_for :month
   validates :content, presence: true
   validates :start_time, presence: true
   validate :time_cannot_be_in_the_past
+  accepts_nested_attributes_for :month
 
   def time_cannot_be_in_the_past
     if !start_time.blank? and start_time < Time.now
@@ -13,10 +15,11 @@ class Task < ApplicationRecord
   end
 
   def date=(date)
+    binding.pry
     t = date.values.map(&:to_i)
     time = Time.new(t[0],t[1],t[2],t[3],t[4])
     self.start_time = time
-    self.month = Month.create_from_time(time)
+    binding.pry
   end
 
   def self.for_today(month, day)
