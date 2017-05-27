@@ -27,7 +27,7 @@ module TasksHelper
   end
 
   def new_task_form(month, day)
-    link_to 'New', new_month_task_path(prev_month(month), day), class: 'new-task'
+    link_to 'New', new_month_task_path(month, day), class: 'new-task'
   end
 
 end

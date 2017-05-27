@@ -1,7 +1,7 @@
 class Calendar < ApplicationRecord
   belongs_to :user
   has_many :months
-  has_many :tasks, through: :months
+  has_many :tasks
   after_create :give_me_months
 
   def give_me_months

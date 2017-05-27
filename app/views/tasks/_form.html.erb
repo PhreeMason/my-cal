@@ -12,31 +12,30 @@
     </ul>
   </div>
 <% end %>
+
+<%= f.label :content %></br>
 <div class="field <%= 'field_with_errors' if task.errors[:content].any? %>">
-  <%= f.label :content %></br>
   <%= f.text_field :content %></br>
 </div>
 
+<%= f.hidden_field :calendar_id, value: my_cal.id %>
+<%= f.label 'Time' %></br>
+
 <div class="field <%= 'field_with_errors' if task.errors[:start_time].any? %>" id='time' >
-  <%= f.label :start_time %></br>
   <%= select_time Time.now, ampm: true %></br>
-</div>
-<%= f.fields_for :month do |task_month|%>
-  <div class="field <%= 'field_with_errors' if task.errors[:start_time].any? %>">
+
+  <%= f.fields_for :month do |task_month|%>
+
     <%= task_month.label :year %>
     <%= select_year month.to_time %></br>
-  </div>
 
-  <div class="field <%= 'field_with_errors' if task.errors[:start_time].any? %>">
     <%= task_month.label :month %>
     <%= select_month month.to_time %></br>
-  </div>
 
-  <div class="field <%= 'field_with_errors' if task.errors[:start_time].any? %>">
     <%= task_month.label :days %>
     <%= select_day task.start_time %></br>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <%= content_tag :div, class: 'actions' do %>
 <%= f.submit %></br>

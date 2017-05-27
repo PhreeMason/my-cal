@@ -5,8 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
   has_one :calendar
-  has_many :mytasks
-  has_many :tasks, through: :mytasks
+  has_many :tasks, through: :calendar
   after_create :give_me_calendar
 
   def give_me_calendar
