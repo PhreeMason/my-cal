@@ -1,7 +1,7 @@
 <div class="task-page">
   <% tasks.each do |task| %>
     <div class="task-show">
-      <p><%= "#{task.start_time.strftime("%I:%M %p")}" %></p>
+      <p><%= "#{task.start_time.strftime('%b %e, %l:%M %p')}" %></p>
       <p id='task-content'><%= "#{task.content}" %></p>
       <%= link_to 'Edit', edit_month_task_url(month, task), id: 'edit' %>
       <div id = 'delete'><%= link_to 'Delete', month_task_path(month, task), method: :delete, data: { confirm: 'Are you sure?' } %></div>

@@ -32,7 +32,7 @@ module TasksHelper
 
   def task_index_header(tasks)
     task= tasks[0]
-    content_tag(:h2, "#{task.month.name} #{task.start_time.day} #{task.month.year}")
+    content_tag(:b, "#{task.month.name} #{task.month.year}")
   end
 
 end

@@ -1,4 +1,4 @@
-<% next_month(month).first_week_days.each do |day| %>
+<% month.first_week_days.each do |day| %>
   <li class="day other-month">
     <div class="date"><%= day %></div>
     <%= new_task_form(month, day) %>

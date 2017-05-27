@@ -2,6 +2,8 @@
   <h1>Tasks</h1>
 </header>
 <% @tasks.each do |tasks| %>
-  <%= task_index_header(tasks) %>
-  <%= render partial: 'tasks/show_tasks', locals: {month: tasks.first.month, tasks: tasks} %>
+  <div class="task-index">
+    <%= task_index_header(tasks) %>
+    <%= render partial: 'tasks/show_tasks', locals: {month: tasks.first.month, tasks: tasks} %>
+  </div>
 <% end %>
