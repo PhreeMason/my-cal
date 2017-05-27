@@ -30,4 +30,9 @@ module TasksHelper
     link_to 'New', new_month_task_path(month, day), class: 'new-task'
   end
 
+  def task_index_header(tasks)
+    task= tasks[0]
+    content_tag(:h2, "#{task.month.name} #{task.start_time.day} #{task.month.year}")
+  end
+
 end

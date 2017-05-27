@@ -1,14 +1,5 @@
-<div class="task-page">
-  <header>
-    <h1><%= "#{@month.name} #{@task.start_time.day} #{@month.year}" %> </h1>
-  </header>
+<header>
+  <h1><%= "#{@month.name} #{@task.start_time.day} #{@month.year}" %> </h1>
+</header>
 
-  <% task_filter(Task.for_today(@month, @task.start_time.day)).each do |task| %>
-    <div class="task-show">
-      <p><%= "#{task.start_time.strftime("%I:%M %p")}" %></p>
-      <p id='task-content'><%= "#{task.content}" %></p>
-
-      <%= link_to 'Edit', edit_month_task_url(@month, task)%>
-    </div>
-  <% end %>
-</div>
+<%= render partial: 'tasks/show_tasks', locals: {month: @month, tasks: @tasks} %>

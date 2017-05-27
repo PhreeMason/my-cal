@@ -37,6 +37,7 @@ class TasksController < ApplicationController
     else
       @month = my_cal.months.find_by(id: params[:month_id])
       @task =  @month.tasks.find_by(id: params[:id])
+      @tasks = @month.tasks
       redirect_to '/', alert: "Task not found." if @task.nil?
     end
   end
@@ -50,6 +51,23 @@ class TasksController < ApplicationController
       @month =  my_cal.months.find_by(id: params[:month_id])
       render :edit
     end
+  end
+
+  def destroy
+    task = current_user.tasks.find_by(id: params[:id])
+    if task
+      month = task.month
+      task.destroy
+      redirect_to month, alert: "Task deleted."
+    else
+      redirect_to '/', alert: "Task not found."
+    end
+  end
+
+  def index
+    @month = my_cal.months.find_by(id: params[:month_id])
+    @months = my_cal.months.select { |e| !e.tasks.empty?  }
+    @tasks = @months.map(&:tasks)
   end
 
   private
