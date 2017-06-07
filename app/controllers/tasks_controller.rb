@@ -75,6 +75,12 @@ class TasksController < ApplicationController
     @month = my_cal.find_month_by_time(Time.now)
     render :index
   end
+  
+  def old_news
+    @tasks = my_cal.old_news
+    @month = my_cal.find_month_by_time(Time.now)
+    render :index
+  end
 
   private
     def task_params

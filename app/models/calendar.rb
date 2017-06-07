@@ -32,5 +32,11 @@ class Calendar < ApplicationRecord
     array = Task.upcoming_for_user(user)
     array.chunk_while {|i, j| i.month == j.month }
   end
+  
+  def old_news
+    array = Task.past_task(user)
+    array.chunk_while {|i, j| i.month == j.month }
+  end
+
 
 end

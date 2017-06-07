@@ -9,6 +9,7 @@
           <div class="dropdown-content">
             <%= link_to 'All Tasks', month_tasks_path(@month) %>
             <%= link_to 'Upcoming', upcoming_path %>
+            <%= link_to 'Overdue', overdue_path %>
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           </div>
         </li>

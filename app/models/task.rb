@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   belongs_to :month, optional: false
   validates :content, presence: true
   validates :start_time, presence: true
-  validate :time_cannot_be_in_the_past
+ # validate :time_cannot_be_in_the_past
 
   def time_cannot_be_in_the_past
     if !start_time.blank? and start_time < (Time.now - 4.hour)
@@ -19,7 +19,11 @@ class Task < ApplicationRecord
   end
 
   def self.upcoming_for_user(user)
-    tasks = joins(:calendar).where(["calendar_id = ?", user.calendar.id]).where('start_time >= ?', Time.now).order("start_time")
+    tasks = joins(:calendar).where(["calendar_id = ?", user.calendar.id]).where('start_time >= ?', Time.now - 4.hour).order("start_time")
+  end
+  
+  def self.past_task(user)
+    tasks = joins(:calendar).where(["calendar_id = ?", user.calendar.id]).where('start_time < ?', Time.now - 4.hour).order("start_time")
   end
 
 

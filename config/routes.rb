@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   get '/upcoming' => 'tasks#upcoming', as: :upcoming
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   root "months#home"
+  get '/overdue' => 'tasks#old_news', as: :overdue
   #rails s -p $PORT -b $IP
 end
