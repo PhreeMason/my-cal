@@ -6,7 +6,7 @@ class Task < ApplicationRecord
   validate :time_cannot_be_in_the_past
 
   def time_cannot_be_in_the_past
-    if !start_time.blank? and start_time < Time.now
+    if !start_time.blank? and start_time < (Time.now - 4.hour)
       errors.add(:start_time, "can't be in the past")
     end
   end
