@@ -1,0 +1,8 @@
+<div id="month-page-form">
+  <a id="close-form" href="#">x</a>
+  <div class="forms">
+    <%= form_for([@month, @task]) do |f| %>
+      <%= render partial: 'tasks/form', locals: {month: @month, task: @task, f: f} %>
+    <%end%>
+  </div>
+</div>

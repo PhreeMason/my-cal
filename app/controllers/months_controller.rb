@@ -3,6 +3,7 @@ class MonthsController < ApplicationController
   def show
     @month = my_cal.months.find_by(id: params[:id])
     redirect_to '/', alert: "Month not found."  if @month.nil?
+    @task = Task.new(month_id: @month.id)
   end
 
   def home

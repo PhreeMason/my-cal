@@ -24,7 +24,7 @@
 
 
 <% month.last_week_days.each do |day| %>
- <li class="days">
+ <li class="day">
    <div class="date"><%= day %></div>
    <%= new_task_form(month, day) %>
    <%= task_for_day(month, day) %>
