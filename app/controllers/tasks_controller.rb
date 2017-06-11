@@ -40,6 +40,9 @@ class TasksController < ApplicationController
       @tasks = @month.tasks_today(@task.start_time.day)
       redirect_to '/', alert: "Task not found." if @task.nil?
     end
+    respond_to do |format|
+      format.html { render :show}
+      format.json { render json: @task} 
   end
 
   def update

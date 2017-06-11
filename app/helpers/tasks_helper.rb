@@ -5,7 +5,7 @@ module TasksHelper
     link_to(month_task_path(task.month, task)) do
       content_tag :div, class: 'event' do
         content_tag(:div, "#{task.content}", class:'event-desc') +
-        content_tag(:div, "#{task.start_time.strftime("%I:%M %p")}" ,class: 'event-time')
+        content_tag(:div, "#{task.time}" ,class: 'event-time')
       end
     end
   end

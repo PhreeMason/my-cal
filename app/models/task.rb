@@ -26,5 +26,7 @@ class Task < ApplicationRecord
     tasks = joins(:calendar).where(["calendar_id = ?", user.calendar.id]).where('start_time < ?', Time.now - 4.hour).order("start_time")
   end
 
-
+  def time
+    start_time.strftime("%I:%M %p")
+  end
 end
