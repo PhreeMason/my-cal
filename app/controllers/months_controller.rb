@@ -6,7 +6,8 @@ class MonthsController < ApplicationController
     @task = Task.new(month_id: @month.id)
     respond_to do |format|
       format.html { render :show}
-      format.json { render json: @month} 
+      format.json { render json: @month}
+    end
   end
 
   def home

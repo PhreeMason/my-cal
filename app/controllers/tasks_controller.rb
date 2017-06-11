@@ -42,7 +42,8 @@ class TasksController < ApplicationController
     end
     respond_to do |format|
       format.html { render :show}
-      format.json { render json: @task} 
+      format.json { render json: @task}
+    end
   end
 
   def update
