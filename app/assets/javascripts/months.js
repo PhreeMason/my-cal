@@ -42,10 +42,13 @@ $(function () {
     var id = $month.data("id");
     var this_month   = $("#days-template").html();
     var other_month = $("#other-days-template").html();
+    var tasks = $('#event-template').html();
     var thisMonthTemplate = Handlebars.compile(this_month);
     var otherMonthTemplate = Handlebars.compile(other_month);
+    var tasksTemplate = Handlebars.compile(tasks)
     $.get("/months/" + id + ".json", function(data) {
-      console.log(data);
+      monthTasks = tasksTemplate(data['tasks'][0]);
+      $('#this-month-15').append(monthTasks)
     });
   });
 
