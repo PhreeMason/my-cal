@@ -1,24 +1,3 @@
-// $(function(){
-//     $('.new-task').on('click', function(e){
-//       e.preventDefault();
-//       alert("we r hack3rz");
-//     });    
-// })
-
-// $(function () {
-//   $('form').submit(function(event) {
-//     //prevent form from submitting the default way
-//     event.preventDefault();
-//     var values = $(this).serialize();
-//     var posting = $.post('/posts', values);
-//     posting.done(function(data) {
-//       var post = data;
-//       $("#postTitle").text(post["title"]);
-//       $("#postBody").text(post["description"]);
-//     });
-//   });
-// });
-
 class Month {
   constructor(attributes){
      this.name = attributes.name
@@ -34,10 +13,13 @@ class Month {
     this.renderLastMonthDays(prev)
     this.renderThisMonthDays(current)
     this.renderNextMonthDays(next)
+    this.displayNameFixLinks()
   }
   
-  displayName(){
+  displayNameFixLinks(){
     $('.month-name').html(`${this.name} ${this.year}`)
+    $('#prev').attr('href', `/months/${this.id}/prev`)
+    $('#next').attr('href', `/months/${this.id}/next`)
   }
   
   renderLastMonthDays(template){
@@ -58,7 +40,7 @@ class Month {
   renderTasks(template){
     this.tasks.forEach(function(e){
       if ($(`#task-${e.day}`).length) {
-        $(`#day-month-${e.day}`).append('<a href="#" class="more-tasks">New</a>')
+        $(`#day-month-${e.day}`).append('<a href="#" class="more-tasks">More...</a>')
       } else {
         $(`#day-month-${e.day}`).append(template(e));
       }
@@ -96,7 +78,6 @@ $(function() {
     e.preventDefault()
     $.get(`${this.href}.json`, function(data) {
       var month = new Month(data)
-      debugger
       month.renderAllDays(other, current, other)
       month.renderTasks(tasksTemplate)
     });
