@@ -10,17 +10,17 @@ module TasksHelper
     end
   end
 
-  def task_for_day(month, day)
-    tasks =  task_filter(month, day)
-    task_display(tasks) unless tasks.empty?
-  end
+  # def task_for_day(month, day)
+  #   tasks =  task_filter(month, day)
+  #   task_display(tasks) unless tasks.empty?
+  # end
 
-  def more_tasks(month, day)
-    tasks =  task_filter(month, day)
-    if tasks.count > 1
-      link_to "#{tasks.count - 1} more", more_task_day_path(month, day), class: 'more-tasks'
-    end
-  end
+  # def more_tasks(month, day)
+  #   tasks =  task_filter(month, day)
+  #   if tasks.count > 1
+  #     link_to "#{tasks.count - 1} more", more_task_day_path(month, day), class: 'more-tasks'
+  #   end
+  # end
 
   def task_filter(month, day)
     tasks = month.tasks.select{|e| e.start_time.day == day }
