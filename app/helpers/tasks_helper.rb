@@ -18,7 +18,7 @@ module TasksHelper
   def more_tasks(month, day)
     tasks =  task_filter(month, day)
     if tasks.count > 1
-      link_to "#{tasks.count - 1} more", month_task_path(month, tasks[0]), class: 'more-tasks'
+      link_to "#{tasks.count - 1} more", more_task_day_path(month, day), class: 'more-tasks'
     end
   end
 

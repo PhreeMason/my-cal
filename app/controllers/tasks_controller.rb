@@ -30,6 +30,21 @@ class TasksController < ApplicationController
       render :new
     end
   end
+  
+  def more 
+    if !Month.exists?(params[:month_id])
+      redirect_to '/', alert: "Month not found."
+    else
+      @month = my_cal.months.find_by(id: params[:month_id])
+      @tasks = @month.tasks_today(params[:day])
+      redirect_to @month, alert: "Task not found." if @tasks.empty?
+    end
+    render :show
+    # respond_to do |format|
+    #   format.html { render :index}
+    #   format.json { render json: @tasks}
+    # end
+  end
 
   def show
     if !Month.exists?(params[:month_id])
@@ -37,7 +52,6 @@ class TasksController < ApplicationController
     else
       @month = my_cal.months.find_by(id: params[:month_id])
       @task =  @month.tasks.find_by(id: params[:id])
-      @tasks = @month.tasks_today(@task.start_time.day)
       redirect_to '/', alert: "Task not found." if @task.nil?
     end
     respond_to do |format|

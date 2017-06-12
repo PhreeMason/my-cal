@@ -37,7 +37,7 @@ class Month < ApplicationRecord
   end
 
   def tasks_today(day)
-    array = tasks.select { |e| e.start_time.day == day }
+    array = tasks.select { |e| e.start_time.day == day.to_i }
   end
 
 end
