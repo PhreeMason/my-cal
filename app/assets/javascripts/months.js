@@ -29,24 +29,36 @@ class Month {
      this.next_month = attributes.next_month_first_days
      this.tasks = attributes.tasks
   }
+  
+  renderAllDays(prev, current, next){
+    this.renderLastMonthDays(prev)
+    this.renderThisMonthDays(current)
+    this.renderNextMonthDays(next)
+  }
+  
   renderLastMonthDays(template){
-    var temp = template(this.days)
-    console.log(temp)
+    var temp = template(this.prev_month)
     $('.days').append(temp)
   }
   
-  renderThisMonthDats(){
-    
+  renderThisMonthDays(template){
+     var temp = template(this.days)
+    $('.days').append(temp)
   }
   
-  renderNextMonthDays(){
-    
+  renderNextMonthDays(template){
+    var temp = template(this.next_month)
+    $('.days').append(temp)
   }
   
   renderTasks(template){
     this.tasks.forEach(function(e){
-       var add = template(e)
-       $(`#this-month-${e.day}`).append(add);
+      if ($(`#task-${e.day}`).length) {
+        
+      } else {
+        var add = template(e)
+        $(`#day-month-${e.day}`).append(template(e));
+      }
      });
   }
 }
@@ -58,16 +70,14 @@ $(function () {
     var id = $month.data("id");
     var thisMonth   = $("#days-template").html();
     var otherMonth = $("#other-days-template").html();
-    console.log(otherMonth)
     var tasks = $('#event-template').html();
-    var thisMonthTemplate = Handlebars.compile(thisMonth);
-    var otherMonthTemplate = Handlebars.compile(otherMonth);
-    console.log(otherMonthTemplate)
+    var current = Handlebars.compile(thisMonth);
+    var other = Handlebars.compile(otherMonth);
     var tasksTemplate = Handlebars.compile(tasks)
     $.get("/months/" + id + ".json", function(data) {
       var month = new Month(data)
-      month.renderLastMonthDays(thisMonthTemplate)
-      // month.renderTasks(tasksTemplate)
+      month.renderAllDays(other, current, other)
+      month.renderTasks(tasksTemplate)
     });
   });
 

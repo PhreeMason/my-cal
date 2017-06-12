@@ -1,6 +1,6 @@
 <script id="other-days-template" type="text/x-handlebars-template">
-  {{#each day}}
-    <li class="day other-month" id="other-month-{{this}}>
+  {{#each this}}
+    <li class="day other-month" id="other-month-{{this}}">
       <div class="date">{{this}}</div>
       <a href="#" class='new-task'>New</a>
     </li>
@@ -8,19 +8,19 @@
 </script>
 
 <script id="days-template" type="text/x-handlebars-template">
-  {{#each day}}
+  {{#each this}}
     <li class="day" id="day-month-{{this}}">
-      <div class="date" id="day-month-{{this}}"><{{this}}</div>
+      <div class="date">{{this}}</div>
       <a href="#" class='new-task'>New</a>
     </li>
-  {{/each }}
+  {{/each}}
 </script>
 
 
   
 <script id="event-template" type="text/x-handlebars-template">
   <div class="event">
-    <div class="event-desc">
+    <div class="event-desc" id="task-{{day}}">
         {{ content }}
     </div>
     <div class="event-time">
