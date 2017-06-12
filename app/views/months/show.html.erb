@@ -30,3 +30,17 @@
     </div>
   </div>
 </script>
+
+<script id="other-days-template" type="text/x-handlebars-template">
+  <li class="day other-month">
+    <div class="date" id="other-month-{{ day }}">{{ day }}</div>
+    <a href="/months/{{id}}/tasks/new/{{day}}" class='new-task'>New</a>
+  </li>
+</script>
+
+<script id="days-template" type="text/x-handlebars-template">
+  <li class="day">
+   <div class="date" id="this-month-{{ day }}"><{{ day }}</div>
+  <a href="/months/{{id}}/tasks/new/{{day}}" class='new-task'>New</a>
+ </li>
+</script>
