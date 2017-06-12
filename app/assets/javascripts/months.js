@@ -29,16 +29,26 @@ class Month {
      this.next_month = attributes.next_month_first_days
      this.tasks = attributes.tasks
   }
- renderMonth(){
-   return 
- }
- 
- renderTasks(template){
-   this.tasks.forEach(function(e){
-      var add = template(e)
-      $(`#this-month-${e.day}`).append(add);
-    });
- }
+  renderLastMonthDays(template){
+    var temp = template(this.days)
+    console.log(temp)
+    $('.days').append(temp)
+  }
+  
+  renderThisMonthDats(){
+    
+  }
+  
+  renderNextMonthDays(){
+    
+  }
+  
+  renderTasks(template){
+    this.tasks.forEach(function(e){
+       var add = template(e)
+       $(`#this-month-${e.day}`).append(add);
+     });
+  }
 }
 
 
@@ -46,15 +56,18 @@ class Month {
 $(function () {
     var $month = $(".month-name") 
     var id = $month.data("id");
-    var this_month   = $("#days-template").html();
-    var other_month = $("#other-days-template").html();
+    var thisMonth   = $("#days-template").html();
+    var otherMonth = $("#other-days-template").html();
+    console.log(otherMonth)
     var tasks = $('#event-template').html();
-    var thisMonthTemplate = Handlebars.compile(this_month);
-    var otherMonthTemplate = Handlebars.compile(other_month);
+    var thisMonthTemplate = Handlebars.compile(thisMonth);
+    var otherMonthTemplate = Handlebars.compile(otherMonth);
+    console.log(otherMonthTemplate)
     var tasksTemplate = Handlebars.compile(tasks)
     $.get("/months/" + id + ".json", function(data) {
-     var month = new Month(data)
-     month.renderTasks(tasksTemplate)
+      var month = new Month(data)
+      month.renderLastMonthDays(thisMonthTemplate)
+      // month.renderTasks(tasksTemplate)
     });
   });
 

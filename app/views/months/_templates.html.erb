@@ -1,0 +1,41 @@
+<script id="other-days-template" type="text/x-handlebars-template">
+  {{#each day}}
+    <li class="day other-month" id="other-month-{{this}}>
+      <div class="date">{{this}}</div>
+      <a href="#" class='new-task'>New</a>
+    </li>
+  {{/each}}
+</script>
+
+<script id="days-template" type="text/x-handlebars-template">
+  {{#each day}}
+    <li class="day" id="day-month-{{this}}">
+      <div class="date" id="day-month-{{this}}"><{{this}}</div>
+      <a href="#" class='new-task'>New</a>
+    </li>
+  {{/each }}
+</script>
+
+
+  
+<script id="event-template" type="text/x-handlebars-template">
+  <div class="event">
+    <div class="event-desc">
+        {{ content }}
+    </div>
+    <div class="event-time">
+        {{ time }}
+    </div>
+  </div>
+</script>
+
+<script id="form-template" type="text/x-handlebars-template">
+  <div id="month-page-form">
+    <a id="close-form" href="#">x</a>
+    <div class="forms">
+      <%= form_for([@month, @task]) do |f| %>
+        <%= render partial: 'tasks/form', locals: {month: @month, task: @task, f: f} %>
+      <%end%>
+    </div>
+  </div>
+</script>
