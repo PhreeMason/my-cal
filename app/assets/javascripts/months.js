@@ -36,9 +36,13 @@ class Month {
     this.renderNextMonthDays(next)
   }
   
+  displayName(){
+    $('.month-name').html(`${this.name} ${this.year}`)
+  }
+  
   renderLastMonthDays(template){
     var temp = template(this.prev_month)
-    $('.days').append(temp)
+    $('.days').html(temp)
   }
   
   renderThisMonthDays(template){
@@ -85,8 +89,16 @@ $(function () {
       month.renderAllDays(other, current, other)
       month.renderTasks(tasksTemplate)
     });
-    
-    $()
-    
   });
 
+$(function() {
+  $('.js-next').click(function(e){
+    e.preventDefault()
+    $.get(`${this.href}.json`, function(data) {
+      var month = new Month(data)
+      debugger
+      month.renderAllDays(other, current, other)
+      month.renderTasks(tasksTemplate)
+    });
+  })
+})

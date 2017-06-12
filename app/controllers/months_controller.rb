@@ -13,5 +13,25 @@ class MonthsController < ApplicationController
   def home
     redirect_to my_cal.find_month_by_time(Time.now)
   end
+  
+  def next_month
+     @month = my_cal.months.find_by(id: params[:id]).next_month
+    redirect_to '/', alert: "Month not found."  if @month.nil?
+    @task = Task.new(month_id: @month.id)
+    respond_to do |format|
+      format.html { render :show}
+      format.json { render json: @month}
+    end
+  end
+  
+  def prev_month
+     @month = my_cal.months.find_by(id: params[:id]).prev_month
+    redirect_to '/', alert: "Month not found."  if @month.nil?
+    @task = Task.new(month_id: @month.id)
+    respond_to do |format|
+      format.html { render :show}
+      format.json { render json: @month}
+    end
+  end
 
 end
