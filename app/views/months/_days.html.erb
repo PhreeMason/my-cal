@@ -1,21 +1,21 @@
 
 <% month.prev_month_last_days.each do |day| %>
   <li class="day other-month">
-    <div class="date" id="day-<%= day%>"><%= day %></div>
+    <div class="date" id="last-month-<%= day%>"><%= day %></div>
     <%= link_to 'New', new_month_task_path(month, day), class: 'new-task' %>
   </li>
 <% end %>
 
-<% all_days(month).each do |day| %>
+<% month.all_days.each do |day| %>
  <li class="day">
-   <div class="date" id="day-<%= day%>"><%= day %></div>
+   <div class="date" id="this-month-<%= day%>"><%= day %></div>
    <%= link_to 'New', new_month_task_path(month, day), class: 'new-task' %>
  </li>
 <% end %>
 
 <% month.next_month_first_days.each do |day| %>
   <li class="day other-month">
-    <div class="date" id="day-<%= day%>"><%= day %></div>
+    <div class="date" id="next-month-<%= day%>"><%= day %></div>
     <%= link_to 'New', new_month_task_path(month, day), class: 'new-task' %>
   </li>
 <% end %>

@@ -54,5 +54,11 @@ class Month < ApplicationRecord
   def tasks_today(day)
     array = tasks.select { |e| e.start_time.day == day.to_i }
   end
-
+  
+  def all_days
+    week_days = first_week_days
+    week_days << middle_week_days
+    week_days << last_week_days
+    week_days.flatten
+  end
 end
