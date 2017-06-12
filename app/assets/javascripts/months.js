@@ -54,30 +54,39 @@ class Month {
   renderTasks(template){
     this.tasks.forEach(function(e){
       if ($(`#task-${e.day}`).length) {
-        
+        $(`#day-month-${e.day}`).append('<a href="#" class="more-tasks">New</a>')
       } else {
-        var add = template(e)
         $(`#day-month-${e.day}`).append(template(e));
       }
      });
   }
 }
 
+var thisMonth;
+var otherMonth;
+var tasks;
+var current;
+var other;
+var tasksTemplate;
+
 
 
 $(function () {
     var $month = $(".month-name") 
     var id = $month.data("id");
-    var thisMonth   = $("#days-template").html();
-    var otherMonth = $("#other-days-template").html();
-    var tasks = $('#event-template').html();
-    var current = Handlebars.compile(thisMonth);
-    var other = Handlebars.compile(otherMonth);
-    var tasksTemplate = Handlebars.compile(tasks)
+    thisMonth   = $("#days-template").html();
+    otherMonth = $("#other-days-template").html();
+    tasks = $('#event-template').html();
+    current = Handlebars.compile(thisMonth);
+    other = Handlebars.compile(otherMonth);
+    tasksTemplate = Handlebars.compile(tasks)
     $.get("/months/" + id + ".json", function(data) {
       var month = new Month(data)
       month.renderAllDays(other, current, other)
       month.renderTasks(tasksTemplate)
     });
+    
+    $()
+    
   });
 
