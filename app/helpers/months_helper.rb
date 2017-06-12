@@ -4,16 +4,17 @@ module MonthsHelper
     current_user.calendar
   end
 
+
+
   def month_header(month)
     "#{month.name} #{month.year}"
   end
 
-  def month_jump
-      form_tag(jump_path) do
-        select_month Time.now
-        select_year Time.now
-      submit_tag("Jump to Month")
-    end
+  def all_days(month)
+    days = month.first_week_days
+    days << month.middle_week_days
+    days << month.last_week_days
+    days.flatten
   end
 
 end

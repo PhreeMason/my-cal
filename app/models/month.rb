@@ -29,12 +29,9 @@ class Month < ApplicationRecord
   end
 
   def middle_week_days
-    week_days = []
     start = first_week_days.last + 1
     finish = last_week_days.first - 1
     all_days = (start..finish).map { |e| e }
-    all_days.each_slice(7) {|e| week_days << e }
-    week_days
   end
 
 
