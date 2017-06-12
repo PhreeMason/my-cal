@@ -32,15 +32,32 @@
 </script>
 
 <script id="other-days-template" type="text/x-handlebars-template">
-  <li class="day other-month">
-    <div class="date" id="other-month-{{ day }}">{{ day }}</div>
-    <a href="/months/{{id}}/tasks/new/{{day}}" class='new-task'>New</a>
-  </li>
+  {{ #each days }}
+    <li class="day other-month">
+      <div class="date" id="other-month-{{ day }}">{{ day }}</div>
+      <a href="/months/{{id}}/tasks/new/{{day}}" class='new-task'>New</a>
+    </li>
+  {{ /each }}
 </script>
 
 <script id="days-template" type="text/x-handlebars-template">
-  <li class="day">
-   <div class="date" id="this-month-{{ day }}"><{{ day }}</div>
-  <a href="/months/{{id}}/tasks/new/{{day}}" class='new-task'>New</a>
- </li>
+  {{ #each days }}
+    <li class="day">
+      <div class="date" id="this-month-{{ day }}"><{{ day }}</div>
+      <a href="/months/{{id}}/tasks/new/{{day}}" class='new-task'>New</a>
+    </li>
+  {{ /each }}
+</script>
+
+
+  
+<script id="event-template" type="text/x-handlebars-template">
+  <div class="event">
+    <div class="event-desc">
+        {{description}}
+    </div>
+    <div class="event-time">
+        {{ time }}
+    </div>
+  </div>
 </script>
