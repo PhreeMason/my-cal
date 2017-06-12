@@ -1,6 +1,18 @@
 class Month < ApplicationRecord
   belongs_to :calendar
   has_many :tasks
+  
+  def prev_month_last_days
+    now = DateTime.new(year, order) - 1.month
+    month = calendar.find_month_by_time(now)
+    month.last_week_days.length == 7 ? [] : month.last_week_days 
+  end
+  
+  def next_month_first_days
+    now = DateTime.new(year, order) + 1.month
+    month = calendar.find_month_by_time(now)
+    month.first_week_days.length == 7 ? [] : month.first_week_days
+  end
 
   def first_week_days
     week_days = []

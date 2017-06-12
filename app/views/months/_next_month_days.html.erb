@@ -1,8 +1,2 @@
-<% if month.first_week_days.length < 7%>
-  <% month.first_week_days.each do |day| %>
-    <li class="day other-month">
-      <div class="date" id="day-<%= day%>"><%= day %></div>
-      <%= link_to 'New', new_month_task_path(month, day), class: 'new-task' %>
-    </li>
-  <% end %>
-<%end%>
+
+

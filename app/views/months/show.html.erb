@@ -16,9 +16,9 @@
         <li>Saturday</li>
     </ul>
     <ul class= 'days'>
-      <%= render partial: 'months/prev_month_days', locals: {month: prev_month(@month)} %>
+  
       <%= render partial: 'months/days', locals: {month: @month} %>
-      <%= render partial: 'months/next_month_days', locals: {month: next_month(@month)} %>
+      
     </ul>
   </div><!-- /. calendar -->
 </div><!-- /. wrap -->
