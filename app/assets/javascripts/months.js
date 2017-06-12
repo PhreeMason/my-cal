@@ -29,10 +29,16 @@ class Month {
      this.next_month = attributes.next_month_first_days
      this.tasks = attributes.tasks
   }
- render_month(){
+ renderMonth(){
    return 
  }
-
+ 
+ renderTasks(template){
+   this.tasks.forEach(function(e){
+      var add = template(e)
+      $(`#this-month-${e.day}`).append(add);
+    });
+ }
 }
 
 
@@ -47,8 +53,8 @@ $(function () {
     var otherMonthTemplate = Handlebars.compile(other_month);
     var tasksTemplate = Handlebars.compile(tasks)
     $.get("/months/" + id + ".json", function(data) {
-      monthTasks = tasksTemplate(data['tasks'][0]);
-      $('#this-month-15').append(monthTasks)
+     var month = new Month(data)
+     month.renderTasks(tasksTemplate)
     });
   });
 
