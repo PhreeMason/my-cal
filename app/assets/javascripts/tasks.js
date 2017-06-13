@@ -3,10 +3,9 @@ function renderForm(argument) {
     var formTemplate = Handlebars.compile(template)
     $('#page-form').html(formTemplate)
     
-    $('#close-form').click(function(){
-       $('#month-page-form').remove()
-       getAndShowMonth()
-    })
+    id = $(".month-name").data("id")
+    $('#close-form').attr('href', `/months/${id}`)
+  
     
     $(function () {
       $('form').submit(function(event) {
