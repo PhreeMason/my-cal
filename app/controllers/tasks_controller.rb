@@ -20,7 +20,9 @@ class TasksController < ApplicationController
   end
 
   def create
+    binding.pry
     @task = Task.new(task_params)
+    binding.pry
     if @task.save
       my_cal.save
       @month = @task.month

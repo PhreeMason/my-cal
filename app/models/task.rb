@@ -11,11 +11,18 @@ class Task < ApplicationRecord
     end
   end
 
+  
   def date=(date)
-    t = date.values.map(&:to_i)
+    t = format_date(date.values)
     time = Time.new(t[0],t[1],t[2],t[3],t[4])
     self.month = self.calendar.find_month_by_time(time)
     self.start_time = time
+  end
+  
+  def format_date(date)
+    result = date[0].split('T').join('-').split('-')
+    result[3] = result[3].split(':')
+    result.flatten.map(&:to_i)
   end
 
   def self.upcoming_for_user(user)

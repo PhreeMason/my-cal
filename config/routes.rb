@@ -11,5 +11,3 @@ Rails.application.routes.draw do
   get '/overdue' => 'tasks#old_news', as: :overdue
   #rails s -p $PORT -b $IP
 end
-# <a href="#" class="js-next" data-id="<%=@post.id%>">Next...</a>
-# <%= link_to 'Next Month', (@month.next_month), id: 'next-month' %>

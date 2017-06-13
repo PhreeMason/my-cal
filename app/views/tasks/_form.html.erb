@@ -22,21 +22,8 @@
 <%= f.label 'Time' %></br>
 
 <div class="field <%= 'field_with_errors' if task.errors[:start_time].any? %>" id='time' >
-  <%= select_time Time.now, ampm: true %></br>
-
-  <%= f.fields_for :month do |task_month|%>
-
-    <%= task_month.label :year %>
-    <%= select_year month.to_time %></br>
-
-    <%= task_month.label :month %>
-    <%= select_month month.to_time %></br>
-
-    <%= task_month.label :days %>
-    <%= select_day task.start_time %></br>
-  <% end %>
+  <%= datetime_local_field(:date, :hour) %>
 </div>
-
 <%= content_tag :div, class: 'actions' do %>
 <%= f.submit %></br>
 <% end %>

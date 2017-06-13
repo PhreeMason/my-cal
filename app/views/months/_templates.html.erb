@@ -2,7 +2,7 @@
   {{#each this}}
     <li class="day other-month" id="other-month-{{this}}">
       <div class="date">{{this}}</div>
-      <a href="#" class='new-task'>New</a>
+      <a href="#" onclick="renderForm(this); return false;" class='new-task' data-id='{{this}}' data-month='current'>New</a>
     </li>
   {{/each}}
 </script>
@@ -11,7 +11,7 @@
   {{#each this}}
     <li class="day" id="day-month-{{this}}">
       <div class="date">{{this}}</div>
-      <a href="#" class='new-task'>New</a>
+      <a href="#" onclick="renderForm(this); return false;" class='new-task' data-id='{{this}}' data-month='current'>New</a>
     </li>
   {{/each}}
 </script>
