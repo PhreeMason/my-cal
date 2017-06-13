@@ -21,16 +21,17 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.save
-      my_cal.save
-      @month = @task.month
-      respond_to do |format|
-        format.html { render :show}
+    respond_to do |format|
+      if @task.save
+        my_cal.save
+        @month = @task.month
+        format.html { redirect_to @month}
         format.json { render json: @month}
+      else
+        @month =  my_cal.months.find_by(id: params[:month_id])
+        format.html { render :new }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
-    else
-      @month =  my_cal.months.find_by(id: params[:month_id])
-      render :new
     end
   end
   

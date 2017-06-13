@@ -13,10 +13,12 @@ class Task < ApplicationRecord
 
   
   def date=(date)
-    t = format_date(date.values)
-    time = Time.new(t[0],t[1],t[2],t[3],t[4])
-    self.month = self.calendar.find_month_by_time(time)
-    self.start_time = time
+    if date.values[0].length > 0
+      t = format_date(date.values)
+      time = Time.new(t[0],t[1],t[2],t[3],t[4])
+      self.month = self.calendar.find_month_by_time(time)
+      self.start_time = time
+    end
   end
   
   def format_date(date)

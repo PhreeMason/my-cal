@@ -1,3 +1,4 @@
+var errors
 function renderForm(argument) {
     var template = $("#form-template").html();
     var formTemplate = Handlebars.compile(template)
@@ -16,6 +17,19 @@ function renderForm(argument) {
         posting.done(function(data) {
           showMonth(data)
           $('#page-form').empty()
+        });
+        
+        posting.fail(function(data) {
+          var error = ''
+          errors = data
+          if (data.responseJSON.content) {
+            error += 'Content cant be blank. '
+          } 
+          if (data.responseJSON.start_time) {
+            error += 'Invalid Time. '
+          }
+          alert( error );
+          $('#page-form').html(formTemplate)
         });
     });
   });
