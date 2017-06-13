@@ -7,3 +7,16 @@
     <%= render partial: 'tasks/show_tasks', locals: {month: tasks.first.month, tasks: tasks} %>
   </div>
 <% end %>
+
+
+
+<script id="tasks-index-template" type="text/x-handlebars-template">
+  {{#each this}}
+    <div class="task-show">
+      <p>{{ time }}</p>
+      <p id='task-content'>{{content}}</p>
+      <%= link_to 'Edit',  /months/{{ month.id }}/tasks/{{ id }}/edit, id: 'edit' %>
+      <div id = 'delete'><%= link_to 'Delete', /months/{{ month.id }}/tasks/{{ id }}, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+  {{/each}}
+</script>
