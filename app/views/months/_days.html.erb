@@ -2,7 +2,6 @@
 <% month.prev_month_last_days.each do |day| %>
   <li class="day other-month" id="last-month-<%= day%>">
     <div class="date"><%= day %></div>
-    <a href="#" onclick="renderForm(this); return false;" class='new-task' data-id='<%= day%>' data-month='current'>New</a>
     <%= show_task(month.prev_month, day) %>
   </li>
 <% end %>
@@ -10,7 +9,6 @@
 <% month.all_days.each do |day| %>
  <li class="day" id="this-month-<%= day%>">
    <div class="date"><%= day %></div>
-   <a href="#" onclick="renderForm(this); return false;" class='new-task' data-id='<%= day%>' data-month='current'>New</a>
    <%= show_task(month, day) %>
  </li>
 <% end %>
@@ -18,7 +16,7 @@
 <% month.next_month_first_days.each do |day| %>
   <li class="day other-month" id="next-month-<%= day%>">
     <div class="date"><%= day %></div>
-    <a href="#" onclick="renderForm(this); return false;" class='new-task' data-id='<%= day%>' data-month='current'>New</a>
     <%= show_task(month.next_month, day) %>
   </li>
 <% end %>
+

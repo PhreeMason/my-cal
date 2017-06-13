@@ -19,7 +19,7 @@
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           </div>
         </li>
-        <li style"float:right"></li>
+        <li style"float:right"><a href="#" onclick="renderForm(this); return false;">New Task</a></li>
         <li style="float:right"><%= link_to 'Next Month', next_month_path(@month), class: "js-next", id: 'next' %></li>
       <%else%>
         <li><%= link_to "Sign in", new_user_session_path %></li>
