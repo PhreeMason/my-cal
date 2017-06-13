@@ -18,6 +18,7 @@ class Month {
   
   displayNameFixLinks(){
     $('.month-name').html(`${this.name} ${this.year}`)
+    $('.month-name').attr('data-id', `${this.id}`)
     $('#prev').attr('href', `/months/${this.id}/prev`)
     $('#next').attr('href', `/months/${this.id}/next`)
   }
@@ -58,28 +59,34 @@ var tasksTemplate;
 
 
 $(function () {
-    var $month = $(".month-name") 
-    var id = $month.data("id");
     thisMonth   = $("#days-template").html();
     otherMonth = $("#other-days-template").html();
     tasks = $('#event-template').html();
     current = Handlebars.compile(thisMonth);
     other = Handlebars.compile(otherMonth);
     tasksTemplate = Handlebars.compile(tasks)
-    $.get("/months/" + id + ".json", function(data) {
-      var month = new Month(data)
-      month.renderAllDays(other, current, other)
-      month.renderTasks(tasksTemplate)
-    });
+    getAndShowMonth()
   });
 
 $(function() {
   $('.js-next').click(function(e){
     e.preventDefault()
     $.get(`${this.href}.json`, function(data) {
-      var month = new Month(data)
-      month.renderAllDays(other, current, other)
-      month.renderTasks(tasksTemplate)
+      showMonth(data)
     });
   })
 })
+
+function showMonth(data) {
+  var month = new Month(data)
+      month.renderAllDays(other, current, other)
+      month.renderTasks(tasksTemplate)
+}
+
+function getAndShowMonth() {
+  var $month = $(".month-name") 
+  var id = $month.data("id");
+  $.get("/months/" + id + ".json", function(data) {
+      showMonth(data)
+  });
+}

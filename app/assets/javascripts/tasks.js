@@ -1,24 +1,25 @@
-var formTemplate
-
-// $(function() {
-//     template = $("#form-template").html();
-//     formTemplate = Handlebars.compile(template)
-// })
-
 function renderForm(argument) {
-    template = $("#form-template").html();
-    formTemplate = Handlebars.compile(template)
+    var template = $("#form-template").html();
+    var formTemplate = Handlebars.compile(template)
     $('#page-form').html(formTemplate)
+    
+    $('#close-form').click(function(){
+       $('#month-page-form').remove()
+       getAndShowMonth()
+    })
+    
+    $(function () {
+      $('form').submit(function(event) {
+        event.preventDefault();
+        var values = $(this).serialize();
+        var posting = $.post('/months/30/tasks.json', values);
+        
+        posting.done(function(data) {
+          showMonth(data)
+          $('#page-form').empty()
+        });
+    });
+  });
 }
 
-
-
-
-function jsForm(event) {
-  event.preventDefault();
-  var values = $(this).serialize();
-  // var posting = $.post('/posts', values);
-  console.log(values)
-  console.log(this)
-};
 

@@ -20,13 +20,14 @@ class TasksController < ApplicationController
   end
 
   def create
-    binding.pry
     @task = Task.new(task_params)
-    binding.pry
     if @task.save
       my_cal.save
       @month = @task.month
-      redirect_to @month
+      respond_to do |format|
+        format.html { render :show}
+        format.json { render json: @month}
+      end
     else
       @month =  my_cal.months.find_by(id: params[:month_id])
       render :new
