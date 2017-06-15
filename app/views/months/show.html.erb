@@ -1,24 +1,25 @@
-<div id="calendar-wrap">
-  <header>
-    <h1 class="month-name" data-id="<%= @month.id %>">
-      <%= month_header(@month) %>
-    </h1>
-  </header>
-  <div id="calendar">
-    <div id="page-form"></div>
-    <ul class="weekdays">
-        <li>Sunday</li>
-        <li>Monday</li>
-        <li>Tuesday</li>
-        <li>Wednesday</li>
-        <li>Thursday</li>
-        <li>Friday</li>
-        <li>Saturday</li>
-    </ul>
-    <ul class= 'days'>
-      <%=  render partial: 'months/days', locals: {month: @month}%>
-    </ul>
-  </div><!-- /. calendar -->
-</div><!-- /. wrap -->
-
+<div class="month-page">
+  <div id="calendar-wrap">
+    <header>
+      <h1 class="month-name" data-id="<%= @month.id %>">
+        <%= month_header(@month) %>
+      </h1>
+    </header>
+    <div id="calendar">
+      <div id="page-form"></div>
+      <ul class="weekdays">
+          <li>Sunday</li>
+          <li>Monday</li>
+          <li>Tuesday</li>
+          <li>Wednesday</li>
+          <li>Thursday</li>
+          <li>Friday</li>
+          <li>Saturday</li>
+      </ul>
+      <ul class= 'days'>
+        <%=  render partial: 'months/days', locals: {month: @month}%>
+      </ul>
+    </div><!-- /. calendar -->
+  </div><!-- /. wrap -->
+</div>
 <%= render 'months/templates' %>

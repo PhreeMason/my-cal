@@ -5,7 +5,7 @@ class TasksController < ApplicationController
       redirect_to '/', alert: "Month not found."
     else
       @month = my_cal.months.find_by(id: params[:month_id])
-      @task = Task.new(month_id: params[:month_id], start_time: @month.to_time(params[:day]))
+      @task = Task.new(month_id: params[:month_id])
     end
   end
 
@@ -34,8 +34,8 @@ class TasksController < ApplicationController
       end
     end
   end
-  
-  def more 
+
+  def more
     if !Month.exists?(params[:month_id])
       redirect_to '/', alert: "Month not found."
     else
@@ -89,7 +89,10 @@ class TasksController < ApplicationController
   def index
     @month = my_cal.months.find_by(id: params[:month_id])
     months = my_cal.months.select { |e| !e.tasks.empty?  }
-    @tasks = months.map(&:tasks)
+    respond_to do |format|
+      format.html { render :index}
+      format.json { render json: months}
+    end
   end
 
   def upcoming
@@ -97,7 +100,7 @@ class TasksController < ApplicationController
     @month = my_cal.find_month_by_time(Time.now)
     render :index
   end
-  
+
   def old_news
     @tasks = my_cal.old_news
     @month = my_cal.find_month_by_time(Time.now)

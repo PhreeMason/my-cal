@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :months, only: [:show, :home] do
-    resources :tasks, except: [:new]
+    resources :tasks
   end
   get 'months/:id/prev' => 'months#prev_month', as: :prev_month
   get '/months/:id/next' => 'months#next_month', as: :next_month

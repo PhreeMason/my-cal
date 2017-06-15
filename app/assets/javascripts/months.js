@@ -8,36 +8,36 @@ class Month {
      this.next_month = attributes.next_month_first_days
      this.tasks = attributes.tasks
   }
-  
+
   renderAllDays(prev, current, next){
     this.renderLastMonthDays(prev)
     this.renderThisMonthDays(current)
     this.renderNextMonthDays(next)
     this.displayNameFixLinks()
   }
-  
+
   displayNameFixLinks(){
     $('.month-name').html(`${this.name} ${this.year}`)
     $('.month-name').attr('data-id', `${this.id}`)
     $('#prev').attr('href', `/months/${this.id}/prev`)
     $('#next').attr('href', `/months/${this.id}/next`)
   }
-  
+
   renderLastMonthDays(template){
     var temp = template(this.prev_month)
     $('.days').html(temp)
   }
-  
+
   renderThisMonthDays(template){
      var temp = template(this.days)
     $('.days').append(temp)
   }
-  
+
   renderNextMonthDays(template){
     var temp = template(this.next_month)
     $('.days').append(temp)
   }
-  
+
   renderTasks(template){
     this.tasks.forEach(function(e){
       if ($(`#task-${e.day}`).length) {
@@ -57,24 +57,24 @@ var other;
 var tasksTemplate;
 
 
-
-$(function () {
-    thisMonth   = $("#days-template").html();
-    otherMonth = $("#other-days-template").html();
-    tasks = $('#event-template').html();
-    current = Handlebars.compile(thisMonth);
-    other = Handlebars.compile(otherMonth);
-    tasksTemplate = Handlebars.compile(tasks)
-    getAndShowMonth()
-  });
-
 $(function() {
-  $('.js-next').click(function(e){
-    e.preventDefault()
-    $.get(`${this.href}.json`, function(data) {
-      showMonth(data)
-    });
-  })
+  if ($('.month-page').length) {
+
+      thisMonth   = $("#days-template").html();
+      otherMonth = $("#other-days-template").html();
+      tasks = $('#event-template').html();
+      current = Handlebars.compile(thisMonth);
+      other = Handlebars.compile(otherMonth);
+      tasksTemplate = Handlebars.compile(tasks)
+      getAndShowMonth()
+
+     $('.js-next').click(function(e){
+       e.preventDefault();
+       $.get(`${this.href}.json`, function(data) {
+         showMonth(data)
+       });
+     })
+  }
 })
 
 function showMonth(data) {
@@ -84,9 +84,48 @@ function showMonth(data) {
 }
 
 function getAndShowMonth() {
-  var $month = $(".month-name") 
+  var $month = $(".month-name")
   var id = $month.data("id");
   $.get("/months/" + id + ".json", function(data) {
       showMonth(data)
   });
+}
+
+function renderForm(e) {
+    if ($('.month-page').length) {
+      e.preventDefault()
+      var template = $("#form-template").html();
+      var formTemplate = Handlebars.compile(template)
+      $('#page-form').html(formTemplate)
+
+      id = $(".month-name").data("id")
+      $('#close-form').attr('href', `/months/${id}`)
+
+
+      $(function () {
+        $('form').submit(function(event) {
+          event.preventDefault();
+          var values = $(this).serialize();
+          var posting = $.post('/months/30/tasks.json', values);
+
+          posting.done(function(data) {
+            showMonth(data)
+            $('#page-form').empty()
+          });
+
+          posting.fail(function(data) {
+            var error = ''
+            errors = data
+            if (data.responseJSON.content) {
+              error += 'Content cant be blank. '
+            }
+            if (data.responseJSON.start_time) {
+              error += 'Invalid Time. '
+            }
+            alert( error );
+            $('#page-form').html(formTemplate)
+          });
+      });
+    });
+  }
 }

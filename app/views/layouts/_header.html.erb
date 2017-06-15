@@ -11,15 +11,15 @@
           </div>
         </li>
         <li class='dropdown'>
-          <div class="dropbtn"><%= link_to 'Today', '/' %></div> 
+          <div class="dropbtn"><%= link_to 'Today', '/' %></div>
           <div class="dropdown-content">
-            <%= link_to 'All Tasks', month_tasks_path(@month) %>
+            <%= link_to 'All Tasks', month_tasks_path(@month), id:'alltasks' %>
             <%= link_to 'Upcoming', upcoming_path %>
             <%= link_to 'Overdue', overdue_path %>
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           </div>
         </li>
-        <li style"float:right"><a href="#" onclick="renderForm(this); return false;">New Task</a></li>
+        <li style"float:right"><%= link_to 'New Task', new_month_task_path(@month), class: 'new-task-link' %></li>
         <li style="float:right"><%= link_to 'Next Month', next_month_path(@month), class: "js-next", id: 'next' %></li>
       <%else%>
         <li><%= link_to "Sign in", new_user_session_path %></li>
