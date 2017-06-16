@@ -1,21 +1,13 @@
 <script id="tasks-index-template" type="text/x-handlebars-template">
     <div class='row'>
       {{#each this}}
-        <header>
-          <h2>{{name}}  {{year}}</h2>
-        </header>
-        {{#each tasks}}
-          {{> displayTask this }}
-        {{/each}}
-      {{each}}
+         <div class="task-show">
+          <p>{{ time }}</p>
+          <p id='task-content'>{{content}}</p>
+          <%= link_to 'Edit',  '/months/{{ month.id }}/tasks/{{ id }}/edit', id: 'edit' %>
+          <div id = 'delete'><%= link_to 'Delete', '/months/{{ month.id }}/tasks/{{ id }}', method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        </div>
+      {{/each}}
     </div>
 </script>
 
-<script id="tasks-partial" type="text/x-handlebars-template">
-  <div class="task-show">
-    <p>{{ time }}</p>
-    <p id='task-content'>{{content}}</p>
-    <%= link_to 'Edit',  '/months/{{ month.id }}/tasks/{{ id }}/edit', id: 'edit' %>
-    <div id = 'delete'><%= link_to 'Delete', '/months/{{ month.id }}/tasks/{{ id }}', method: :delete, data: { confirm: 'Are you sure?' } %></div>
-  </div>
-</script>

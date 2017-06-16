@@ -99,13 +99,19 @@ class TasksController < ApplicationController
   def upcoming
     @tasks = my_cal.upcoming_tasks
     @month = my_cal.find_month_by_time(Time.now)
-    render :index
+    respond_to do |format|
+      format.html { render :index}
+      format.json { render json: @tasks}
+    end
   end
 
   def old_news
     @tasks = my_cal.old_news
     @month = my_cal.find_month_by_time(Time.now)
-    render :index
+    respond_to do |format|
+      format.html { render :index}
+      format.json { render json: @tasks}
+    end
   end
 
   private

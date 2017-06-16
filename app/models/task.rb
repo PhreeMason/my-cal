@@ -36,7 +36,7 @@ class Task < ApplicationRecord
   end
 
   def time
-    start_time.strftime("%I:%M %p")
+    start_time.strftime("%b %e, %l:%M %p")
   end
   
   def day 
