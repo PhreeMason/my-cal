@@ -1,6 +1,5 @@
 var tasksTemplate 
 var addToDiv
-var gg
 $(document).on('turbolinks:load', function() {
   if ($('body').is('.task-index-page')) {
     tasksTemplate = Handlebars.compile($('#tasks-index-template').html());
