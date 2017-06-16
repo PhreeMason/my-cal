@@ -13,9 +13,9 @@
         <li class='dropdown'>
           <div class="dropbtn"><%= link_to 'Today', '/' %></div>
           <div class="dropdown-content">
-            <%= link_to 'All Tasks', month_tasks_path(@month), id:'alltasks' %>
-            <%= link_to 'Upcoming', upcoming_path %>
-            <%= link_to 'Overdue', overdue_path %>
+            <%= link_to 'All Tasks', month_tasks_path(@month), id: 'alltasks' %>
+            <%= link_to 'Upcoming', upcoming_path, class: 'get-tasks' %>
+            <%= link_to 'Overdue', overdue_path, class: 'get-tasks' %>
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           </div>
         </li>
