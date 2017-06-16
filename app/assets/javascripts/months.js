@@ -57,9 +57,8 @@ var other;
 var tasksTemplate;
 
 
-$(function() {
-  if ($('.month-page').length) {
-
+$(document).on('turbolinks:load', function() {
+  if ($('body').is('.month-page')) {
       thisMonth   = $("#days-template").html();
       otherMonth = $("#other-days-template").html();
       tasks = $('#event-template').html();
@@ -73,6 +72,10 @@ $(function() {
        $.get(`${this.href}.json`, function(data) {
          showMonth(data)
        });
+     })
+     $('#new-task-link').click(function(e){
+       e.preventDefault();
+       renderForm(e);
      })
   }
 })
@@ -92,15 +95,12 @@ function getAndShowMonth() {
 }
 
 function renderForm(e) {
-    if ($('.month-page').length) {
-      e.preventDefault()
       var template = $("#form-template").html();
       var formTemplate = Handlebars.compile(template)
       $('#page-form').html(formTemplate)
 
       id = $(".month-name").data("id")
       $('#close-form').attr('href', `/months/${id}`)
-
 
       $(function () {
         $('form').submit(function(event) {
@@ -128,4 +128,4 @@ function renderForm(e) {
       });
     });
   }
-}
+

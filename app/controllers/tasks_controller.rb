@@ -89,9 +89,10 @@ class TasksController < ApplicationController
   def index
     @month = my_cal.months.find_by(id: params[:month_id])
     months = my_cal.months.select { |e| !e.tasks.empty?  }
+    @tasks = months.map(&:tasks).flatten
     respond_to do |format|
       format.html { render :index}
-      format.json { render json: months}
+      format.json { render json: @tasks}
     end
   end
 
