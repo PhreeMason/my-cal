@@ -16,7 +16,6 @@
             <%= link_to 'All Tasks', month_tasks_path(@month), id: 'alltasks' %>
             <%= link_to 'Upcoming', upcoming_path, class: 'get-tasks' %>
             <%= link_to 'Overdue', overdue_path, class: 'get-tasks' %>
-            <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
           </div>
         </li>
         <li style"float:right"><%= link_to 'New Task', new_month_task_path(@month), id: 'new-task-link' %></li>

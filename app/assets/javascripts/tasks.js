@@ -4,7 +4,7 @@ var gg
 $(document).on('turbolinks:load', function() {
   if ($('body').is('.task-index-page')) {
     tasksTemplate = Handlebars.compile($('#tasks-index-template').html());
-    link = $('#alltasks').attr('href')
+    link = window.location.href
     getAndDisplayTasks(link)
    
    $('.get-tasks').click(function(e){

@@ -117,7 +117,7 @@ function renderForm(e) {
             var error = ''
             errors = data
             if (data.responseJSON.content) {
-              error += 'Content cant be blank. '
+              error += "Content can't be blank. "
             }
             if (data.responseJSON.start_time) {
               error += 'Invalid Time. '
