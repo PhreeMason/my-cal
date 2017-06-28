@@ -17,14 +17,16 @@
 
   
 <script id="event-template" type="text/x-handlebars-template">
-  <div class="event">
-    <div class="event-desc" id="task-{{day}}">
-        {{ content }}
-    </div>
-    <div class="event-time">
-        {{ month_time }}
-    </div>
-  </div>
+ <a href="{{link}}">
+    <div class="event">
+      <div class="event-desc" id="task-{{day}}">
+          {{ content }}
+      </div>
+      <div class="event-time">
+          {{ month_time }}
+      </div>
+    </div>  
+  </a>
 </script>
 
 <script id="form-template" type="text/x-handlebars-template">

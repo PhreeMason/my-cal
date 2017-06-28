@@ -46,5 +46,9 @@ class Task < ApplicationRecord
   def day 
     start_time.day
   end
+
+  def link
+    "/months/#{self.month.id}/tasks/#{self.id}"
+  end
   
 end

@@ -50,9 +50,10 @@ class Month {
   }
 
   renderTasks(template){
+    var id = this.id
     this.tasks.forEach(function(e){
       if ($(`#task-${e.day}`).length) {
-        $(`#day-month-${e.day}`).append('<a href="#" class="more-tasks">More...</a>')
+        $(`#day-month-${e.day}`).append(`<a href="/months/${id}/tasks" class="more-tasks">More...</a>`)
       } else {
         $(`#day-month-${e.day}`).append(template(e));
       }
@@ -88,11 +89,11 @@ $(document).on('turbolinks:load', function() {
         e.preventDefault();
         renderForm(e);
      })
-     $('.date').click(function(e){
-        // e.preventDefault();
-        console.log(this)
-        console.log(e)
-     })
+     // $('.date').click(function(e){
+     //    // e.preventDefault();
+     //    console.log(this)
+     //    console.log(e)
+     // })
   }
 })
 
