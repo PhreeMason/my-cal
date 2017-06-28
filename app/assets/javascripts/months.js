@@ -7,6 +7,7 @@ class Month {
      this.prev_month = attributes.prev_month_last_days
      this.next_month = attributes.next_month_first_days
      this.tasks = attributes.tasks
+     this.order = attributes.order
   }
 
   renderAllDays(prev, current, next){
@@ -21,6 +22,16 @@ class Month {
     $('.month-name').attr('data-id', `${this.id}`)
     $('#prev').attr('href', `/months/${this.id}/prev`)
     $('#next').attr('href', `/months/${this.id}/next`)
+  }
+
+  displayInputTime(day){
+    var order = this.order < 10 ? '0' + this.order : this.order
+    if (day) {
+      day = day < 10 ? '0' + day : day
+      return(`${this.year}-${order}-${day}T12:00`)
+    } else {
+      return(`${this.year}-${order}-12T12:00`)
+    }
   }
 
   renderLastMonthDays(template){
@@ -48,7 +59,7 @@ class Month {
      });
   }
 }
-
+var monthForNow
 var thisMonth;
 var otherMonth;
 var tasks;
@@ -68,22 +79,27 @@ $(document).on('turbolinks:load', function() {
       getAndShowMonth()
 
      $('.js-next').click(function(e){
-       e.preventDefault();
-       $.get(`${this.href}.json`, function(data) {
-         showMonth(data)
+        e.preventDefault();
+        $.get(`${this.href}.json`, function(data) {
+          showMonth(data)
        });
      })
      $('#new-task-link').click(function(e){
-       e.preventDefault();
-       renderForm(e);
+        e.preventDefault();
+        renderForm(e);
+     })
+     $('.date').click(function(e){
+        // e.preventDefault();
+        console.log(this)
+        console.log(e)
      })
   }
 })
 
 function showMonth(data) {
-  var month = new Month(data)
-      month.renderAllDays(other, current, other)
-      month.renderTasks(tasksTemplate)
+      monthForNow = new Month(data)
+      monthForNow.renderAllDays(other, current, other)
+      monthForNow.renderTasks(tasksTemplate)
 }
 
 function getAndShowMonth() {
@@ -97,7 +113,7 @@ function getAndShowMonth() {
 function renderForm(e) {
       var template = $("#form-template").html();
       var formTemplate = Handlebars.compile(template)
-      $('#page-form').html(formTemplate)
+      $('#page-form').html(formTemplate(monthForNow.displayInputTime()))
 
       id = $(".month-name").data("id")
       $('#close-form').attr('href', `/months/${id}`)

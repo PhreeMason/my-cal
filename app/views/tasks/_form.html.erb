@@ -22,7 +22,7 @@
 <%= f.label 'Time' %></br>
 
 <div class="field <%= 'field_with_errors' if task.errors[:start_time].any? %>" id='time' >
-  <%= datetime_local_field(:date, :hour) %>
+  <input type="datetime-local" name="date[hour]" id="date_hour" value="{{ this }}"/>
 </div>
 <%= content_tag :div, class: 'actions' do %>
 <%= f.submit %></br>
