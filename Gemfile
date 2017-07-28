@@ -24,6 +24,8 @@ gem 'devise'
 
 gem 'omniauth'
 
+gem 'coffee-rails'
+
 gem 'omniauth-facebook'
 
 gem 'dotenv-rails'
